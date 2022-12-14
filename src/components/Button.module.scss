@@ -1,0 +1,39 @@
+.Button {
+  //default attributes
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &--purple {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0 3rem;
+    background-color: rgb(102, 104, 171);
+    color: #fff;
+    transition: 0.3s;
+    &:hover {
+      background-color: rgba(102, 104, 171, 0.8);
+    }
+  }
+  &--white {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    color: #6668ab;
+    border: 1px solid #6668ab;
+    transition: 0.3s;
+  }
+  // &--green {
+  //   font-size: 1.5rem;
+  //   font-weight: bold;
+  //   padding: 1rem 2rem;
+  //   background-color: #51cf66;
+  //   color: #fff;
+  //   // border: 1px solid #8ce99a;
+
+  //   &:hover {
+  //     background-color: #69db7c;
+  //   }
+  // }
+}

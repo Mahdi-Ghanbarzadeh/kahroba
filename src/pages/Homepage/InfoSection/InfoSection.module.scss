@@ -1,0 +1,62 @@
+.InfoSection {
+  // height: 130rem;
+  //   background-color: #f7f7f7;
+  background-color: #fff;
+  padding: 16rem 0 15rem 0;
+  margin-top: -27rem;
+
+  &__content {
+    padding: 1rem 20rem;
+
+    @media (max-width: 61em) {
+      padding: 1rem 10rem;
+    }
+
+    @media (max-width: 54em) {
+      padding: 1rem 5rem;
+    }
+
+    @media (max-width: 32.625em) {
+      padding: 1rem 2rem;
+    }
+  }
+
+  @media (max-width: 61em) {
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+
+    @media (max-width: 61em) {
+      gap: 2rem;
+    }
+
+    &__header {
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    &__description {
+      text-align: center;
+
+      font-size: 1.5rem;
+    }
+    &__image {
+      width: 45rem;
+
+      @media (max-width: 54em) {
+        width: 35rem;
+      }
+
+      @media (max-width: 38.5em) {
+        width: 25rem;
+      }
+      // position: absolute;
+      // height: 20rem;
+      // margin-left: 5rem;
+    }
+  }
+}
