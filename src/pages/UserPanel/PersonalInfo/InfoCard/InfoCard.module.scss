@@ -1,0 +1,39 @@
+.infoCard {
+  // border: 1px solid #777;
+  border-left: 1px solid #e0e0e2;
+  border-bottom: 1px solid #e0e0e2;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+
+  &__titleValue {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__title {
+      color: #81858b;
+      font-size: 1.6rem;
+    }
+    &__value {
+      color: #424750;
+      font-size: 1.6rem;
+    }
+  }
+
+  &__edit {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+      font-size: 2.5rem;
+      color: #424750;
+      flex-shrink: 0;
+      cursor: pointer;
+
+      &:hover {
+        color: #686c73;
+      }
+    }
+  }
+}

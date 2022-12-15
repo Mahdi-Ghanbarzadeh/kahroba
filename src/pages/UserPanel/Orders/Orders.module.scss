@@ -1,0 +1,41 @@
+.container {
+  margin: 3rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  background-color: #fff;
+  border-radius: 3rem;
+
+  &__headerContainer {
+    grid-column: 1 / span 2;
+    border-bottom: 1px solid #e0e0e2;
+
+    &__header {
+      position: relative;
+      display: inline-block;
+      padding-right: 1rem;
+      padding-left: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.3rem solid #6667ab;
+    }
+
+    &__text {
+      color: #6667ab;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+  }
+
+  &__orderItems {
+    margin-top: 3rem;
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+}
+// .header {
+//   border-bottom: 1px solid #f1f3f5;
+//   padding-bottom: 1.3rem;
+// }

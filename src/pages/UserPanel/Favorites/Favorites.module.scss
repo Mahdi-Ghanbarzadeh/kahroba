@@ -1,0 +1,127 @@
+.container {
+  margin: 3rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  background-color: #fff;
+  border-radius: 3rem;
+
+  &__headerContainer {
+    grid-column: 1 / span 2;
+    border-bottom: 1px solid #e0e0e2;
+
+    &__header {
+      position: relative;
+      display: inline-block;
+      padding-right: 1rem;
+      padding-left: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.3rem solid #6667ab;
+    }
+
+    &__text {
+      color: #6667ab;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+  }
+
+  &__favoriteItems {
+    margin-top: 3rem;
+    // border: 1px solid #e0e0e2;
+    // border-radius: 1rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 4rem;
+    gap: 1rem;
+
+    @media (max-width: 80.125em) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 66.25em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 51.5em) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (max-width: 41.25em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 33.25em) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    &__item {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      border-left: 1px solid black;
+
+      border: 1px solid #e0e0e2;
+      border-radius: 1rem;
+
+      &:hover {
+        // box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+      }
+
+      &__pic {
+        height: 15rem;
+        width: 15rem;
+        // align-self: center;
+      }
+      &__name {
+        // padding: 0 5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        line-height: 2.1; /* fallback */
+        max-height: 2.1 * 2; /* fallback */
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+      &__price {
+        font-size: 1.6rem;
+        font-weight: 600;
+        align-self: end;
+      }
+      &__priceOff {
+        margin-top: -2rem;
+        margin-left: 4.5rem;
+        color: #c0c2c5;
+        font-size: 1.6rem;
+        font-weight: 600;
+        align-self: end;
+        text-decoration: line-through;
+      }
+      &__btn {
+        font-size: 1.4rem;
+        color: #5f3dc4;
+        background-color: #fff;
+        border: 1px solid #d0bfff;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 1rem 3rem;
+        width: 100%;
+
+        &:hover {
+          background-color: #f3f0ff;
+        }
+      }
+    }
+  }
+}
+// .header {
+//   border-bottom: 1px solid #f1f3f5;
+//   padding-bottom: 1.3rem;
+// }

@@ -37,7 +37,7 @@ function HeroSection() {
           </div>
         </div>
         <div className={classes.HeroSection__gallery}>
-          <img
+          {/* <img
             src="./images/2.jpg"
             alt="picture 1"
             className={classNames(
@@ -60,7 +60,7 @@ function HeroSection() {
               classes.HeroSection__gallery__photo,
               classes["HeroSection__gallery__photo--p3"]
             )}
-          />
+          /> */}
         </div>
       </div>
     </section>
