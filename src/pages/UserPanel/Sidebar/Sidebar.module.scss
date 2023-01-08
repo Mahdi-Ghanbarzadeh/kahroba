@@ -6,30 +6,56 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  border-radius: 30px;
+  border-radius: 15px;
   height: 100vh;
   position: sticky;
+
+  border: 1px solid #e0e0e6;
 }
 .seller-info {
-  margin-top: 2rem;
-  padding: 2rem 3rem;
+  margin: 4rem 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgb(204, 204, 204);
   display: flex;
+  flex-direction: column;
   color: #343a40;
   //   box-shadow: 0px 13px 17px -7px rgba(0, 0, 0, 0.29);
   &__icon {
     font-size: 2rem;
   }
   &__description {
+    display: flex;
+    padding-right: 1.5rem;
+    font-size: 1.6rem;
+  }
+  &__descriptions {
     padding-right: 1.5rem;
     font-size: 1.6rem;
   }
   &__title {
     margin-bottom: 1rem;
   }
+  &__phone {
+    color: rgb(102, 102, 102);
+  }
+  &__tokens {
+    width: auto;
+    background-color: rgb(232, 250, 240);
+    background-color: #f4eee9;
+    border: 1px solid #8d5524;
+    color: #8d5524 !important;
+    font-size: 15px;
+    display: flex;
+    -moz-box-pack: justify;
+    justify-content: space-between;
+    border-radius: 16px;
+    padding: 12px 24px;
+    margin: 15px 0px;
+  }
 }
 .side-nav {
   list-style: none;
-  margin-top: 2rem;
+  // margin-top: 2rem;
   // position: fixed;
 
   &__item {
@@ -41,7 +67,7 @@
     }
   }
   &__icon {
-    color: #6667ab;
+    color: #8d5524;
     margin-left: 1rem;
   }
   &__link:link,
@@ -61,7 +87,7 @@
     align-items: center;
     &:hover {
       background-color: #f1f3f5;
-      color: #6667ab;
+      color: #8d5524;
       border-radius: 16px;
     }
   }
@@ -86,7 +112,7 @@
       padding: 1rem;
       &:hover {
         background-color: #f1f3f5;
-        color: #6667ab;
+        color: #8d5524;
         border-radius: 10px;
       }
     }
@@ -103,7 +129,7 @@
 }
 
 .userImage {
-  height: 6rem;
+  height: 7rem;
 }
 
 .link {

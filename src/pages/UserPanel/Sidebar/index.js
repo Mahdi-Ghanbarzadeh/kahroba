@@ -4,10 +4,13 @@ import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../../../store/UserContext";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 function Sidebar() {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
+  user.username = "مهدی قنبرزاده ";
+  user.phoneNumber = "09338682635";
 
   function logoutHandler() {
     logout();
@@ -18,12 +21,35 @@ function Sidebar() {
     <>
       <nav className={classes.sidebar}>
         <div className={classes["seller-info"]}>
-          <img src="./images/user1.png" className={classes.userImage} />
+          {/* <img src="./user-icon.jpg" className={classes.userImage} /> */}
+          {/* <img
+            src={"./../../../../public/user-icon.jpg"}
+            className={classes.userImage}
+          /> */}
+
+          {/* <img
+            src={`${process.env.PUBLIC_URL}/assets/user-icon.jpg`}
+            className={classes.userImage}
+            alt="logo"
+          /> */}
           <div className={classes["seller-info__description"]}>
-            <div className={classes["seller-info__title"]}>{user.username}</div>
-            <div className={classes["seller-info__phone"]}>
-              {user.phoneNumber}
+            <img
+              src={"/assets/user-icon.jpg"}
+              alt=""
+              className={classes.userImage}
+            />
+            <div className={classes["seller-info__descriptions"]}>
+              <div className={classes["seller-info__title"]}>
+                {user.username}
+              </div>
+              <div className={classes["seller-info__phone"]}>
+                {digitsEnToFa(user.phoneNumber)}
+              </div>
             </div>
+          </div>
+          <div className={classes["seller-info__tokens"]}>
+            {/* <span>رویش موجود: 5 عدد</span> */}
+            <span>{`رویش موجود: ${digitsEnToFa(5)} عدد`}</span>
           </div>
         </div>
 

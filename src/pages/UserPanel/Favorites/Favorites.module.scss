@@ -6,7 +6,9 @@
   flex: 1;
 
   background-color: #fff;
-  border-radius: 3rem;
+  border-radius: 15px;
+
+  border: 1px solid #e0e0e6;
 
   &__headerContainer {
     grid-column: 1 / span 2;

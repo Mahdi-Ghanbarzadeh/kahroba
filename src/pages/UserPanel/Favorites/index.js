@@ -17,14 +17,14 @@ function Favorites() {
   let [favorites, setFavorites] = useState([]);
   console.log(favorites);
 
-  useEffect(() => {
-    axiosInstance.get(`/accounts/show_favorite/`).then((res) => {
-      if (res.status === 200) {
-        setLoading(false);
-        setFavorites(res.data);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   axiosInstance.get(`/accounts/show_favorite/`).then((res) => {
+  //     if (res.status === 200) {
+  //       setLoading(false);
+  //       setFavorites(res.data);
+  //     }
+  //   });
+  // }, []);
 
   function favoriteHandler(e) {
     console.log(e.target);
