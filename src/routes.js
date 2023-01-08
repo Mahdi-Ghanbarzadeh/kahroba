@@ -5,6 +5,7 @@ import UserPanel from "./pages/UserPanel";
 import Favorites from "./pages/UserPanel/Favorites";
 import PersonalInfo from "./pages/UserPanel/PersonalInfo";
 import DonatedBooks from "./pages/UserPanel/DonatedBooks";
+import RequestedBooks from "./pages/UserPanel/RequestedBooks";
 import NotFound from "./pages/NotFound";
 
 export const routes = [
@@ -26,6 +27,7 @@ export const routes = [
     children: [
       { path: "/user-panel/favorites", element: <Favorites /> },
       { path: "/user-panel/donated-books", element: <DonatedBooks /> },
+      { path: "/user-panel/requested-books", element: <RequestedBooks /> },
       { path: "/user-panel/personal-info", element: <PersonalInfo /> },
     ],
   },

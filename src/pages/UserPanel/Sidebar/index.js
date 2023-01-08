@@ -119,7 +119,7 @@ function Sidebar() {
             </li>
           </Link>
 
-          <Link to="/user-panel/orders" className={classes.link}>
+          <Link to="/user-panel/requested-books" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
