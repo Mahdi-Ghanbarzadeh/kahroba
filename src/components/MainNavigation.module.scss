@@ -8,7 +8,7 @@
   background-color: white;
   // padding: 5% 5%;
   padding: 4rem 8rem;
-  border-bottom: 2px solid #6667ab;
+  border-bottom: 2px solid #8d5524;
 
   @media (max-width: 32.5em) {
     padding: 2rem 4rem;
@@ -58,7 +58,7 @@
     }
     .logo {
       font-size: 3rem;
-      color: #6667ab;
+      color: #8d5524;
       font-weight: bold;
       margin-left: 40px;
       // padding-left: 70px;
@@ -131,7 +131,7 @@
 
   .Navigation {
     &--list {
-      color: #6667ab;
+      color: #8d5524;
       list-style: none;
       margin-left: 80%;
       padding: 0;
@@ -148,7 +148,7 @@
       &:after {
         content: "";
         position: absolute;
-        background-color: #6667ab;
+        background-color: #8d5524;
         height: 3px;
         width: 0;
         right: 0;
@@ -165,7 +165,7 @@
 .link:link,
 .link:visited {
   text-decoration: none;
-  color: #6667ab;
+  color: #8d5524;
 }
 // .header {
 //   width: 100%;

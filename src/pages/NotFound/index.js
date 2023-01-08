@@ -22,7 +22,6 @@ function NotFound() {
           </Button>
         </Link>
       </div>
-      <Footer />
     </>
   );
 }

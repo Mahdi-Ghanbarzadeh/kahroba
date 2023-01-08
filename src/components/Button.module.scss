@@ -8,11 +8,11 @@
     font-size: 1.5rem;
     font-weight: bold;
     padding: 0 3rem;
-    background-color: rgb(102, 104, 171);
+    background-color: rgb(198, 134, 66);
     color: #fff;
     transition: 0.3s;
     &:hover {
-      background-color: rgba(102, 104, 171, 0.8);
+      background-color: rgba(198, 134, 66, 0.8);
     }
   }
   &--white {
@@ -20,8 +20,8 @@
     font-weight: bold;
     padding: 1rem 2rem;
     background-color: #fff;
-    color: #6668ab;
-    border: 1px solid #6668ab;
+    color: #8d5524;
+    border: 1px solid #8d5524;
     transition: 0.3s;
   }
   // &--green {

@@ -1,6 +1,6 @@
 .HeroSection {
   min-height: 84rem;
-  background-color: #e1e1ee;
+  background-color: #ffdbac;
 
   &__content {
     max-width: 1360px;
@@ -34,7 +34,7 @@
     }
 
     &--header {
-      background-image: linear-gradient(to right, #8376b6, #262879);
+      background-image: linear-gradient(to right, #c68642, #8d5524);
       background-clip: text;
       -webkit-text-fill-color: transparent;
       // color: #fff;
@@ -54,7 +54,7 @@
   &__button--right {
     margin-left: 1rem;
     padding: 1rem 3rem;
-    background-image: linear-gradient(to right bottom, #9389bd, #6768ab);
+    background-image: linear-gradient(to right bottom, #8d5524, #8d5524);
     transition: all 0.5s;
     text-align: center;
     position: relative;
@@ -91,7 +91,7 @@
 
     &:after {
       content: "←";
-      color: #6668ab;
+      color: #8d5524;
       position: absolute;
       opacity: 0;
       top: 50%;
