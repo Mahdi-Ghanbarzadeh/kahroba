@@ -4,7 +4,7 @@ import AccountBox from "./pages/AccountBox";
 import UserPanel from "./pages/UserPanel";
 import Favorites from "./pages/UserPanel/Favorites";
 import PersonalInfo from "./pages/UserPanel/PersonalInfo";
-import Orders from "./pages/UserPanel/Orders";
+import DonatedBooks from "./pages/UserPanel/DonatedBooks";
 import NotFound from "./pages/NotFound";
 
 export const routes = [
@@ -25,7 +25,7 @@ export const routes = [
     element: <UserPanel />,
     children: [
       { path: "/user-panel/favorites", element: <Favorites /> },
-      { path: "/user-panel/orders", element: <Orders /> },
+      { path: "/user-panel/donated-books", element: <DonatedBooks /> },
       { path: "/user-panel/personal-info", element: <PersonalInfo /> },
     ],
   },

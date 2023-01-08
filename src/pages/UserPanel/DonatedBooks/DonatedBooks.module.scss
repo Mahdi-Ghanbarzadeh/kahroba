@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-
   background-color: #fff;
-  border-radius: 3rem;
+  border-radius: 15px;
+  border: 1px solid #e0e0e6;
 
   &__headerContainer {
     grid-column: 1 / span 2;
@@ -18,24 +18,20 @@
       padding-right: 1rem;
       padding-left: 1.5rem;
       padding-bottom: 0.5rem;
-      border-bottom: 0.3rem solid #6667ab;
+      border-bottom: 0.3rem solid #8d5524;
     }
 
     &__text {
-      color: #6667ab;
+      color: #8d5524;
       font-size: 1.8rem;
       font-weight: 600;
     }
   }
 
-  &__orderItems {
+  &__donatedItems {
     margin-top: 3rem;
     border: 1px solid #e0e0e2;
     border-radius: 1rem;
     overflow: hidden;
   }
 }
-// .header {
-//   border-bottom: 1px solid #f1f3f5;
-//   padding-bottom: 1.3rem;
-// }

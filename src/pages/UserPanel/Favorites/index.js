@@ -13,7 +13,7 @@ const override = `
 `;
 
 function Favorites() {
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
   let [favorites, setFavorites] = useState([]);
   console.log(favorites);
 
@@ -46,11 +46,10 @@ function Favorites() {
 
   return (
     <div className={classes.container}>
-      {/* <h2 className={classes.header}>سفارش‌ها</h2> */}
       <div className={classes.container__headerContainer}>
         <div className={classes.container__headerContainer__header}>
           <span className={classes.container__headerContainer__text}>
-            لیست علاقه‌مندی‌ها
+            اهدای کتاب
           </span>
         </div>
       </div>

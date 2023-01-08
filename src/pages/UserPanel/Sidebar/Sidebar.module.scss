@@ -90,33 +90,29 @@
       color: #8d5524;
       border-radius: 16px;
     }
-  }
-  &__submenu {
-    list-style: none;
-    position: static;
-    display: none;
 
-    &__item {
-      text-decoration: none;
-      // padding: 2rem;
-      &:not(:last-child) {
-        margin-bottom: 1.5rem;
-      }
-    }
-    &__link:link,
-    &__link:visited {
-      position: relative;
-      font-size: 1.4rem;
-      text-decoration: none;
-      margin-right: 5rem;
-      padding: 1rem;
-      &:hover {
-        background-color: #f1f3f5;
-        color: #8d5524;
-        border-radius: 10px;
-      }
-    }
+    // &--active {
+    //   color: #8d5524;
+    // }
   }
+
+  // &__linkClicked {
+  //   font-size: 1.6rem;
+  //   white-space: nowrap;
+  //   color: #343a40;
+  //   text-decoration: none;
+  //   text-transform: none;
+  //   display: block;
+  //   padding: 1.5rem 3rem;
+  //   position: relative;
+  //   z-index: 10;
+  //   transition: all ease-out 0.5s;
+  //   display: flex;
+  //   align-items: center;
+  //   background-color: #f1f3f5;
+  //   color: #8d5524;
+  //   border-radius: 16px;
+  // }
 }
 
 .icon {

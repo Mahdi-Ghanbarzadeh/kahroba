@@ -2,20 +2,43 @@ import classes from "./Sidebar.module.scss";
 import MainNavigation from "../../../components/MainNavigation";
 import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import UserContext from "../../../store/UserContext";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 function Sidebar() {
   const { user, logout } = useContext(UserContext);
+  const menu1 = useRef(null);
+  const [currentMenu, setCurretMenu] = useState(menu1);
   const navigate = useNavigate();
   user.username = "مهدی قنبرزاده ";
   user.phoneNumber = "09338682635";
+
+  // useEffect(() => {
+  //   navigate("/user-panel/favorites");
+  // }, [navigate]);
 
   function logoutHandler() {
     logout();
     navigate("/");
   }
+
+  // function menuClickHandler(e) {
+  //   if (e.target !== currentMenu.current) {
+  //     currentMenu.current.className = "side-nav__link";
+  //     console.log(currentMenu.current.className);
+
+  //     e.target.className = "side-nav__linkClicked";
+  //     console.log(e.target.className);
+  //     setCurretMenu(e.target);
+  //   }
+  //   console.log(currentMenu.current);
+  //   console.log(e.target);
+  //   console.log(e.target === currentMenu.current);
+  //   console.log(e.target.className);
+  //   console.log(e.target.classNames);
+  //   console.log("clicked!");
+  // }
 
   return (
     <>
@@ -62,6 +85,8 @@ function Sidebar() {
                   classes["side-nav__link--active"],
                   classes["side-nav__link"]
                 )}
+                // onClick={menuClickHandler}
+                // ref={menu1}
               >
                 <i
                   className={classNames(
@@ -74,7 +99,7 @@ function Sidebar() {
             </li>
           </Link>
 
-          <Link to="/user-panel/orders" className={classes.link}>
+          <Link to="/user-panel/donated-books" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
