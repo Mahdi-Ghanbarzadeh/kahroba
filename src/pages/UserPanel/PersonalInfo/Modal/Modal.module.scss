@@ -3,7 +3,6 @@
   border-radius: 6px;
   background-color: white;
   padding: 2rem 3rem;
-  // text-align: center;
   width: 50rem;
   z-index: 100;
   position: absolute;
@@ -62,7 +61,6 @@
         transition: all 200ms ease-in-out;
         font-size: 14px;
         border-radius: 10px;
-        // box-shadow: 1px 1px 1px rgba(15, 15, 15, 0.2);
         position: relative;
 
         &::placeholder {
@@ -75,7 +73,6 @@
 
         &:focus {
           outline: none;
-          // border-bottom: 1px solid #5e4d9b;
           box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
             rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
         }
@@ -87,7 +84,7 @@
         left: 5%;
         font-size: 1.6rem;
         &:hover {
-          color: #5e4d9b;
+          color: #8d5524;
           cursor: pointer;
         }
       }
@@ -104,7 +101,7 @@
     border-radius: 10px;
     cursor: pointer;
     transition: all, 240ms ease-in-out;
-    background: #5e4d9b;
+    background: #8d5524;
 
     &:hover {
       filter: brightness(1.03);
@@ -119,6 +116,6 @@
     font-weight: 600;
     border: none;
     border-radius: 10px;
-    background: #dfdceb;
+    background: #e8ddd3;
   }
 }

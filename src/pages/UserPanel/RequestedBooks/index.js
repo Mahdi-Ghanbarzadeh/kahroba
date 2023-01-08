@@ -22,7 +22,7 @@ function RequestedBooks() {
       translator_name: "فرشته اكبرپور",
       print_year: "1390",
       isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-      status: "اهدا شده",
+      status: "نامشخص",
     },
     {
       book_name: "نبرد من",
@@ -31,7 +31,7 @@ function RequestedBooks() {
       translator_name: "فرشته اكبرپور",
       print_year: "1390",
       isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-      status: "اهدا شده",
+      status: "پذیرفته شده",
     },
     {
       book_name: "نبرد من",
@@ -40,7 +40,7 @@ function RequestedBooks() {
       translator_name: "فرشته اكبرپور",
       print_year: "1390",
       isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-      status: "اهدا شده",
+      status: "پذیرفته نشده",
     },
     {
       book_name: "نبرد من",
@@ -49,7 +49,7 @@ function RequestedBooks() {
       translator_name: "فرشته اكبرپور",
       print_year: "1390",
       isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-      status: "اهدا شده",
+      status: "نامشخص ",
     },
   ];
 

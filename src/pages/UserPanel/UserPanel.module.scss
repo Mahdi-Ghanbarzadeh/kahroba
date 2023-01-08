@@ -1,9 +1,9 @@
 .SellerPanel {
-  margin: auto;
-  // background-color: #f5f5f5;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 3rem;
   &__container {
     display: flex;
-    // height: 30px;
     min-height: 50rem;
     @media only screen and (max-width: 660px) {
       flex-direction: column;

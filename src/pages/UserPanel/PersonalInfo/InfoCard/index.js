@@ -4,6 +4,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Modal from "../Modal";
 import Backdrop from "../Backdrop";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 const edit = <FontAwesomeIcon icon={faPenToSquare} />;
 
 function InfoCard({ title, value, type, name, information, setInformation }) {
@@ -14,12 +15,15 @@ function InfoCard({ title, value, type, name, information, setInformation }) {
   function closeModalHandler() {
     setModalIsOpen(false);
   }
+  console.log(isNaN(value));
 
   return (
     <div className={classes.infoCard}>
       <div className={classes.infoCard__titleValue}>
         <div className={classes.infoCard__titleValue__title}>{title}</div>
-        <div className={classes.infoCard__titleValue__value}>{value}</div>
+        <div className={classes.infoCard__titleValue__value}>
+          {isNaN(value) ? value : digitsEnToFa(value)}
+        </div>
       </div>
       <div className={classes.infoCard__edit}>
         <span

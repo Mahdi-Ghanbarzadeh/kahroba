@@ -10,7 +10,7 @@ const override = `
 `;
 
 function PersonalInfo() {
-  let [loading, setLoading] = useState(true);
+  let [loading, setLoading] = useState(false);
   let [information, setInformation] = useState([]);
 
   useEffect(() => {
@@ -22,6 +22,9 @@ function PersonalInfo() {
     });
   }, []);
 
+  information.username = "مهدی قنبرزاده";
+  information.user_phone_number = "09338682635";
+
   return (
     <div className={classes.container}>
       <div className={classes.container__headerContainer}>
@@ -31,7 +34,7 @@ function PersonalInfo() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#6667ab" loading={loading} css={override} size={30} />
+      <BeatLoader color="#8d5524" loading={loading} css={override} size={30} />
       {!loading && (
         <div className={classes.container__infoCards}>
           <InfoCard
