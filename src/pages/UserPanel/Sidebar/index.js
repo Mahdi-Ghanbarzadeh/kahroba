@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
 import UserContext from "../../../store/UserContext";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
+import { useInView } from "react-intersection-observer";
 
 function Sidebar() {
   const { user, logout } = useContext(UserContext);
@@ -22,6 +23,10 @@ function Sidebar() {
     logout();
     navigate("/");
   }
+
+  const { ref, inView, entry } = useInView({
+    threshold: 1,
+  });
 
   // function menuClickHandler(e) {
   //   if (e.target !== currentMenu.current) {
@@ -41,8 +46,8 @@ function Sidebar() {
   // }
 
   return (
-    <>
-      <nav className={classes.sidebar}>
+    <div ref={ref}>
+      <nav className={inView ? classes.sidebar : classes.sidebar__sticky}>
         <div className={classes["seller-info"]}>
           {/* <img src="./user-icon.jpg" className={classes.userImage} /> */}
           {/* <img
@@ -75,7 +80,6 @@ function Sidebar() {
             <span>{`رویش موجود: ${digitsEnToFa(5)} عدد`}</span>
           </div>
         </div>
-
         <ul className={classes["side-nav"]}>
           <Link to="/user-panel/favorites" className={classes.link}>
             <li className={classes["side-nav__item"]}>
@@ -174,7 +178,7 @@ function Sidebar() {
           {/* </Link> */}
         </ul>
       </nav>
-    </>
+    </div>
   );
 }
 
