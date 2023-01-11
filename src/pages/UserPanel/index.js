@@ -7,8 +7,8 @@ function UserPanel() {
   return (
     <>
       <MainNavigation />
-      <div className={classes.SellerPanel}>
-        <div className={classes.SellerPanel__container}>
+      <div className={classes.UserPanel}>
+        <div className={classes.UserPanel__container}>
           <Sidebar />
           <Outlet />
         </div>

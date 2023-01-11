@@ -1,5 +1,4 @@
 import classes from "./Sidebar.module.scss";
-import MainNavigation from "../../../components/MainNavigation";
 import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
@@ -48,7 +47,7 @@ function Sidebar() {
   return (
     <div ref={ref}>
       <nav className={inView ? classes.sidebar : classes.sidebar__sticky}>
-        <div className={classes["seller-info"]}>
+        <div className={classes["user-info"]}>
           {/* <img src="./user-icon.jpg" className={classes.userImage} /> */}
           {/* <img
             src={"./../../../../public/user-icon.jpg"}
@@ -60,28 +59,25 @@ function Sidebar() {
             className={classes.userImage}
             alt="logo"
           /> */}
-          <div className={classes["seller-info__description"]}>
+          <div className={classes["user-info__description"]}>
             <img
               src={"/assets/user-icon.jpg"}
               alt=""
               className={classes.userImage}
             />
-            <div className={classes["seller-info__descriptions"]}>
-              <div className={classes["seller-info__title"]}>
-                {user.username}
-              </div>
-              <div className={classes["seller-info__phone"]}>
+            <div className={classes["user-info__descriptions"]}>
+              <div className={classes["user-info__title"]}>{user.username}</div>
+              <div className={classes["user-info__phone"]}>
                 {digitsEnToFa(user.phoneNumber)}
               </div>
             </div>
           </div>
-          <div className={classes["seller-info__tokens"]}>
-            {/* <span>رویش موجود: 5 عدد</span> */}
+          <div className={classes["user-info__tokens"]}>
             <span>{`رویش موجود: ${digitsEnToFa(5)} عدد`}</span>
           </div>
         </div>
         <ul className={classes["side-nav"]}>
-          <Link to="/user-panel/favorites" className={classes.link}>
+          <Link to="/user-panel/donate-book" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
@@ -143,7 +139,7 @@ function Sidebar() {
             </li>
           </Link>
 
-          <Link to="/user-panel/personal-info" className={classes.link}>
+          <Link to="/user-panel/personal-information" className={classes.link}>
             <li className={classes["side-nav__item"]}>
               <a
                 href="#"
@@ -163,7 +159,6 @@ function Sidebar() {
             </li>
           </Link>
 
-          {/* <Link to={"/"} className={classes.link}> */}
           <li onClick={logoutHandler} className={classes["side-nav__item"]}>
             <a href="#/" className={classNames(classes["side-nav__link"])}>
               <i
@@ -175,7 +170,6 @@ function Sidebar() {
               <span>خروج</span>
             </a>
           </li>
-          {/* </Link> */}
         </ul>
       </nav>
     </div>

@@ -1,5 +1,5 @@
 .container {
-  height: calc(100vh - 15rem);
+  height: calc(100vh - 20rem);
   display: flex;
   gap: 2rem;
   flex-direction: column;
@@ -17,34 +17,38 @@
   }
 
   &__button {
-    padding: 1rem 3rem;
-    background-image: linear-gradient(90deg, #c68642 0%, #8d5524 100%);
-    transition: all 0.5s;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: 100px;
+    // padding: 1rem 3rem;
+    // background-image: linear-gradient(90deg, #c68642 0%, #8d5524 100%);
+    // transition: all 0.5s;
+    // text-align: center;
+    // position: relative;
+    // overflow: hidden;
+    // border-radius: 100px;
 
-    &:after {
-      content: "←";
-      position: absolute;
-      opacity: 0;
-      visibility: hidden;
-      top: 50%;
-      transform: translateY(-50%);
-      left: -80px;
-      transition: 0.5s;
-    }
+    // font-size: 14px;
+    font-weight: 500;
+    fill: #000000;
+    color: #000000;
+
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #8d5524;
+    border-radius: 50px 50px 50px 50px;
+    padding: 15px 55px 13px 55px;
 
     &:hover {
-      padding-right: 3rem;
-      padding-left: 4.5rem;
-    }
+      color: #ffffff;
+      background-color: #8d5524;
+      transform: translateY(-5px);
 
-    &:hover:after {
-      opacity: 1;
-      left: 1.2rem;
-      visibility: visible;
+      // animation-name: elementor-animation-bob-float, elementor-animation-bob;
+      // animation-duration: 0.3s, 1.5s;
+      // animation-delay: 0s, 0.3s;
+      // animation-timing-function: ease-out, ease-in-out;
+      // animation-iteration-count: 1, infinite;
+      // animation-fill-mode: forwards;
+      // animation-direction: normal, alternate;
     }
   }
 }

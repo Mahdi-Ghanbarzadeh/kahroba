@@ -10,11 +10,11 @@ function NotFound() {
       <MainNavigation />
       <div className={classes.container}>
         <span className={classes.container__header}>
-          اوپس، صفحه‌ای که دنبال آن بودید پیدا نشد.
+          صفحه‌ای که دنبال آن بودید پیدا نشد!
         </span>
         <img
           className={classes.container__img}
-          src="./images/illustration14.png"
+          src={"/assets/page-not-found.png"}
         />
         <Link to={"/"}>
           <Button color="purple" className={classes.container__button}>

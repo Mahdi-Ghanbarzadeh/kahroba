@@ -2,7 +2,7 @@ import Homepage from "./pages/Homepage";
 import ForgotPassword from "./pages/AccountBox/ForgotPassword";
 import AccountBox from "./pages/AccountBox";
 import UserPanel from "./pages/UserPanel";
-import Favorites from "./pages/UserPanel/Favorites";
+import DonateBook from "./pages/UserPanel/DonateBook";
 import PersonalInfo from "./pages/UserPanel/PersonalInfo";
 import DonatedBooks from "./pages/UserPanel/DonatedBooks";
 import RequestedBooks from "./pages/UserPanel/RequestedBooks";
@@ -25,10 +25,10 @@ export const routes = [
     path: "/user-panel",
     element: <UserPanel />,
     children: [
-      { path: "/user-panel/favorites", element: <Favorites /> },
+      { path: "/user-panel/donate-book", element: <DonateBook /> },
       { path: "/user-panel/donated-books", element: <DonatedBooks /> },
       { path: "/user-panel/requested-books", element: <RequestedBooks /> },
-      { path: "/user-panel/personal-info", element: <PersonalInfo /> },
+      { path: "/user-panel/personal-information", element: <PersonalInfo /> },
     ],
   },
 
