@@ -1,6 +1,6 @@
 .HeroSection {
   min-height: 84rem;
-  background-color: #ffdbac;
+  // background-color: #ffdbac;
 
   &__content {
     max-width: 1360px;
@@ -60,26 +60,10 @@
     position: relative;
     overflow: hidden;
 
-    &:after {
-      content: "←";
-      position: absolute;
-      opacity: 0;
-      visibility: hidden;
-      top: 50%;
-      transform: translateY(-50%);
-      left: -80px;
-      transition: 0.5s;
-    }
-
     &:hover {
-      padding-right: 2rem;
-      padding-left: 4rem;
-    }
-
-    &:hover:after {
-      opacity: 1;
-      left: 1.2rem;
-      visibility: visible;
+      color: #ffffff;
+      background-color: #8d5524;
+      transform: translateY(-5px);
     }
   }
   &__button--left {
@@ -89,27 +73,8 @@
     position: relative;
     overflow: hidden;
 
-    &:after {
-      content: "←";
-      color: #8d5524;
-      position: absolute;
-      opacity: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      left: -90px;
-      transition: 0.5s;
-      visibility: hidden;
-    }
-
     &:hover {
-      padding-right: 2rem;
-      padding-left: 4rem;
-    }
-
-    &:hover:after {
-      opacity: 1;
-      left: 1.2rem;
-      visibility: visible;
+      transform: translateY(-5px);
     }
   }
 
