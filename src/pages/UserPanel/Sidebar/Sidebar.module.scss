@@ -60,8 +60,9 @@
     color: #8d5524 !important;
     font-size: 15px;
     display: flex;
+    gap: 1rem;
+    align-items: center;
     -moz-box-pack: justify;
-    justify-content: space-between;
     border-radius: 16px;
     padding: 12px 24px;
     margin: 15px 0px;
@@ -77,10 +78,15 @@
     display: flex;
     align-items: center;
     padding: 0 2rem;
+    margin: 0 2rem;
 
-    &:hover {
+    &--active {
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      margin: 0 2rem;
       border-radius: 16px;
-      background-color: #f1f3f5;
+      background-color: #f7f3f0;
       color: #8d5524;
     }
   }
@@ -104,40 +110,7 @@
 
     display: flex;
     align-items: center;
-    // &:hover {
-    //   background-color: #f1f3f5;
-    //   color: #8d5524;
-    //   border-radius: 16px;
-    // }
-
-    // &__link:active {
-    //   background-color: #f1f3f5;
-    //   color: #8d5524;
-    //   border-radius: 16px;
-    // }
-
-    // &--active {
-    //   color: #8d5524;
-    // }
   }
-
-  // &__linkClicked {
-  //   font-size: 1.6rem;
-  //   white-space: nowrap;
-  //   color: #343a40;
-  //   text-decoration: none;
-  //   text-transform: none;
-  //   display: block;
-  //   padding: 1.5rem 3rem;
-  //   position: relative;
-  //   z-index: 10;
-  //   transition: all ease-out 0.5s;
-  //   display: flex;
-  //   align-items: center;
-  //   background-color: #f1f3f5;
-  //   color: #8d5524;
-  //   border-radius: 16px;
-  // }
 }
 
 .icon {
