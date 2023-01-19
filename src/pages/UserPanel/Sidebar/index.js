@@ -5,6 +5,18 @@ import { useContext, useState, useRef, useEffect } from "react";
 import UserContext from "../../../store/UserContext";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useInView } from "react-intersection-observer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGift } from "@fortawesome/free-solid-svg-icons";
+import { faShare } from "@fortawesome/free-solid-svg-icons";
+import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+const donateIcon = <FontAwesomeIcon icon={faShare} />;
+const donatedIcon = <FontAwesomeIcon icon={faFileArrowUp} />;
+const requestedIcon = <FontAwesomeIcon icon={faFileArrowDown} />;
+const informationIcon = <FontAwesomeIcon icon={faUser} />;
+const logoutIcon = <FontAwesomeIcon icon={faArrowRightFromBracket} />;
 
 function Sidebar() {
   const { user, logout } = useContext(UserContext);
@@ -79,21 +91,14 @@ function Sidebar() {
         <ul className={classes["side-nav"]}>
           <Link to="/user-panel/donate-book" className={classes.link}>
             <li className={classes["side-nav__item"]}>
+              <i className={classes["side-nav__icon"]}>{donateIcon}</i>
               <a
                 href="#"
                 className={classNames(
                   classes["side-nav__link--active"],
                   classes["side-nav__link"]
                 )}
-                // onClick={menuClickHandler}
-                // ref={menu1}
               >
-                <i
-                  className={classNames(
-                    classes["side-nav__icon"],
-                    "fa-solid fa-bookmark"
-                  )}
-                />
                 اهدای کتاب
               </a>
             </li>
@@ -101,6 +106,7 @@ function Sidebar() {
 
           <Link to="/user-panel/donated-books" className={classes.link}>
             <li className={classes["side-nav__item"]}>
+              <i className={classes["side-nav__icon"]}>{donatedIcon}</i>
               <a
                 href="#"
                 className={classNames(
@@ -108,12 +114,6 @@ function Sidebar() {
                   classes["side-nav__link"]
                 )}
               >
-                <i
-                  className={classNames(
-                    classes["side-nav__icon"],
-                    "fa-solid fa-bag-shopping"
-                  )}
-                />
                 کتاب‌های اهدایی
               </a>
             </li>
@@ -121,6 +121,7 @@ function Sidebar() {
 
           <Link to="/user-panel/requested-books" className={classes.link}>
             <li className={classes["side-nav__item"]}>
+              <i className={classes["side-nav__icon"]}>{requestedIcon}</i>
               <a
                 href="#"
                 className={classNames(
@@ -128,12 +129,6 @@ function Sidebar() {
                   classes["side-nav__link"]
                 )}
               >
-                <i
-                  className={classNames(
-                    classes["side-nav__icon"],
-                    "fa-solid fa-bag-shopping"
-                  )}
-                />
                 کتاب‌های درخواستی
               </a>
             </li>
@@ -141,6 +136,7 @@ function Sidebar() {
 
           <Link to="/user-panel/personal-information" className={classes.link}>
             <li className={classes["side-nav__item"]}>
+              <i className={classes["side-nav__icon"]}>{informationIcon}</i>
               <a
                 href="#"
                 className={classNames(
@@ -148,25 +144,14 @@ function Sidebar() {
                   classes["side-nav__link"]
                 )}
               >
-                <i
-                  className={classNames(
-                    classes["side-nav__icon"],
-                    "fa-solid fa-user"
-                  )}
-                />
                 اطلاعات حساب کاربری
               </a>
             </li>
           </Link>
 
           <li onClick={logoutHandler} className={classes["side-nav__item"]}>
+            <i className={classes["side-nav__icon"]}>{logoutIcon}</i>
             <a href="#/" className={classNames(classes["side-nav__link"])}>
-              <i
-                className={classNames(
-                  classes["side-nav__icon"],
-                  "fa-solid fa-arrow-right-from-bracket"
-                )}
-              />
               <span>خروج</span>
             </a>
           </li>

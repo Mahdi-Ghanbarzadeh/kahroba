@@ -35,7 +35,7 @@ function DonateBook() {
         </div>
       </div>
       <span className={classes.container__description}>
-        لطفا مشخصات کتاب خود را وارد کنید. پر کردن همه موارد الزامی است!
+        لطفا مشخصات کتاب را وارد کنید (وارد کردن همه موارد الزامی است).
       </span>
       <form className={classes.form}>
         <label className={classes.input}>

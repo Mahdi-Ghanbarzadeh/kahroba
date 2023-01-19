@@ -36,31 +36,15 @@ function HeroSection() {
             </Link>
           </div>
         </div>
-        <div className={classes.HeroSection__gallery}>
-          {/* <img
-            src="./images/2.jpg"
-            alt="picture 1"
+        <div className={classes.HeroSection__photoContainer}>
+          <img
+            src={"/assets/book.jpg"}
+            alt="book illustration"
             className={classNames(
-              classes.HeroSection__gallery__photo,
-              classes["HeroSection__gallery__photo--p1"]
+              classes.HeroSection__photoContainer__photo,
+              classes["HeroSection__photoContainer__photo"]
             )}
           />
-          <img
-            src="../images/5.jpg"
-            alt="picture 2"
-            className={classNames(
-              classes.HeroSection__gallery__photo,
-              classes["HeroSection__gallery__photo--p2"]
-            )}
-          />
-          <img
-            src="../images/6.jpg"
-            alt="picture 3"
-            className={classNames(
-              classes.HeroSection__gallery__photo,
-              classes["HeroSection__gallery__photo--p3"]
-            )}
-          /> */}
         </div>
       </div>
     </section>

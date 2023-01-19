@@ -1,4 +1,3 @@
-import Footer from "../../components/Footer";
 import MainNavigation from "../../components/MainNavigation";
 import classes from "./NotFound.module.scss";
 import Button from "../../components/Button";

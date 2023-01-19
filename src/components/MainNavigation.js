@@ -6,75 +6,67 @@ import classNames from "classnames";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
 const loginIcon = <FontAwesomeIcon icon={faArrowRightToBracket} />;
+const booksIcon = <FontAwesomeIcon icon={faBook} />;
+const infoIcon = <FontAwesomeIcon icon={faCircleInfo} />;
+const contactIcon = <FontAwesomeIcon icon={faPhone} />;
 
 function MainNavigation() {
   const { user } = useContext(UserContext);
+  // user.auth = true;
   return (
     <header className={classes.header}>
       <div className={classes.content}>
-        <div className={classes.container}>
+        <div className={classes.containerLogo}>
           <Link to="/" className={classes.link}>
             <div className={classes.logo}>کهربا</div>
           </Link>
+        </div>
 
+        <div className={classes.containerNav}>
+          <nav className={classes.Navigation}>
+            <ul className={classes["Navigation--list"]}>
+              <Link to="/books" className={classes.link}>
+                <li className={classes["Navigation--item"]}>
+                  <i className={classes.header__login_logo}>{booksIcon}</i>
+                  <span>کتاب‌ها</span>
+                </li>
+              </Link>
+              <Link to="/" className={classes.link}>
+                <li className={classes["Navigation--item"]}>
+                  <i className={classes.header__login_logo}>{infoIcon}</i>
+                  <span>درباره ما</span>
+                </li>
+              </Link>
+              <Link to={"/"} className={classes.link}>
+                <li className={classes["Navigation--item"]}>
+                  <i className={classes.header__login_logo}>{contactIcon}</i>
+                  <span>تماس با ما</span>
+                </li>
+              </Link>
+            </ul>
+          </nav>
           {user.auth ? (
             <div className={classes.container__btns}>
-              {user.type === "user" && (
-                <Link to="/shopping-list" className={classes.link}>
-                  <Button color="white" className={classes.header__navButton}>
-                    <i
-                      className={classNames(
-                        classes.header__login_logo,
-                        "fa-solid fa-cart-shopping"
-                      )}
-                    />
-                    سبد خرید
-                  </Button>
-                </Link>
-              )}
-
-              <Link
-                to={user.type === "user" ? "/user-panel" : "/seller-panel"}
-                className={classes.link}
-              >
+              <Link to="/user-panel" className={classes.link}>
                 <Button color="white" className={classes.header__navButton}>
-                  <i
-                    className={classNames(
-                      classes.header__login_logo,
-                      "fa-solid fa-user-large"
-                    )}
-                  />
-                  پنل کاربری
+                  <i className={classNames(classes.header__login_logo)} />
+                  حساب کاربری
                 </Button>
               </Link>
             </div>
           ) : (
             <Link to="/account-box" className={classes.link}>
-              {/* <i className={classes.header__login_logo}>{loginIcon}</i> */}
-              <Button color="white">
-                <i className={classes.header__login_logo}>{loginIcon}</i>ورود |
-                ثبت‌نام
+              <Button color="white" className={classes.header__login_btn}>
+                <i className={classes.header__login_logo}>{loginIcon}</i>
+                <span> ورود | ثبت‌نام</span>
               </Button>
             </Link>
           )}
         </div>
-
-        <nav className={classes.Navigation}>
-          <ul className={classes["Navigation--list"]}>
-            <Link to="/products-list" className={classes.link}>
-              <li className={classes["Navigation--item"]}>کتاب‌ها</li>
-            </Link>
-            <Link to="/" className={classes.link}>
-              <li className={classes["Navigation--item"]}>درباره ما</li>
-            </Link>
-            {!user.auth && (
-              <Link to={"/"} className={classes.link}>
-                <li className={classes["Navigation--item"]}>تماس با ما</li>
-              </Link>
-            )}
-          </ul>
-        </nav>
       </div>
     </header>
   );
