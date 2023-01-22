@@ -3,44 +3,45 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios";
 
 const UserContext = createContext({
-  type: "",
   username: "",
+  userId: "",
   phoneNumber: "",
   email: "",
+  rooyesh: "",
   auth: false,
 });
 
 export function UserContextProvider({ children }) {
   const [user, setUser] = useState({
-    type: "",
     username: "",
+    userId: "",
     phoneNumber: "",
     email: "",
+    rooyesh: "",
     auth: false,
   });
   console.log(user);
-  const navigate = useNavigate();
 
-  const login = (type, username, phoneNumber, email = "", isSurvey = false) => {
+  const login = (username, userId, phoneNumber, email, rooyesh) => {
     setUser({
-      type: type,
       username: username,
+      userId: userId,
       phoneNumber: phoneNumber,
       email: email,
+      rooyesh: rooyesh,
       auth: true,
     });
     localStorage.setItem(
       "userInformation",
       JSON.stringify({
-        type: type,
         username: username,
+        userId: userId,
         phoneNumber: phoneNumber,
         email: email,
+        rooyesh: rooyesh,
         auth: true,
       })
     );
-    // navigate(isSurvey ? "/survey" : "-1", { replace: true });
-    // navigate(-1);
   };
 
   const updateName = (username = user.username) => {
@@ -56,35 +57,56 @@ export function UserContextProvider({ children }) {
   };
 
   const checkLogin = () => {
-    if (localStorage.getItem("access_token") !== null) {
+    if (
+      localStorage.getItem("token") !== null &&
+      localStorage.getItem("token") !== undefined &&
+      localStorage.getItem("token") !== "undefined"
+    ) {
       console.log("test");
       axiosInstance
-        .post(`accounts/api/token/verify/`, {
-          token: localStorage.getItem("access_token"),
-        })
+        .get(`auth/info/`)
         .then((res) => {
-          console.log("res" + res);
-          if (res.status === 200) {
-            console.log(res);
-            console.log(localStorage.getItem("userInformation"));
-            setUser(JSON.parse(localStorage.getItem("userInformation")));
-          } else {
-            console.log("logout checklogin");
-            logout();
+          console.log(res);
+          if (res.status >= 200 && res.status < 300) {
+            login(
+              res.data.name,
+              res.data.user_id,
+              res.data.phone_number,
+              res.data.email,
+              res.data.rooyesh
+            );
           }
+        })
+        .catch((e) => {
+          console.log(e);
         });
+      // axiosInstance
+      //   .post(`accounts/api/token/verify/`, {
+      //     token: localStorage.getItem("access_token"),
+      //   })
+      //   .then((res) => {
+      //     console.log("res" + res);
+      //     if (res.status === 200) {
+      //       console.log(res);
+      //       console.log(localStorage.getItem("userInformation"));
+      //       setUser(JSON.parse(localStorage.getItem("userInformation")));
+      //     } else {
+      //       console.log("logout checklogin");
+      //       logout();
+      //     }
+      //   });
     }
   };
 
   const logout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("token");
     localStorage.removeItem("userInformation");
     setUser({
-      type: "",
       username: "",
+      userId: "",
       phoneNumber: "",
       email: "",
+      rooyesh: "",
       auth: false,
     });
   };

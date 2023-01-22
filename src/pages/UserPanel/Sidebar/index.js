@@ -22,8 +22,6 @@ const logoutIcon = <FontAwesomeIcon icon={faArrowRightFromBracket} />;
 function Sidebar() {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
-  user.username = "مهدی قنبرزاده ";
-  user.phoneNumber = "09338682635";
 
   // useEffect(() => {
   //   navigate("/user-panel/favorites");
@@ -33,6 +31,7 @@ function Sidebar() {
     e.preventDefault();
     logout();
     navigate("/");
+    window.scroll(0, 0);
   }
 
   const { ref, inView, entry } = useInView({
@@ -58,7 +57,7 @@ function Sidebar() {
           </div>
           <div className={classes["user-info__tokens"]}>
             <span>{tokenIcon}</span>
-            <span>{`رویش : ${digitsEnToFa(5)} عدد`}</span>
+            <span>{`رویش : ${digitsEnToFa(user.rooyesh)} عدد`}</span>
           </div>
         </div>
         <ul className={classes["side-nav"]}>

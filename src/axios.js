@@ -1,12 +1,15 @@
 import axios from "axios";
-const baseUrl = "http://45.15.25.48:8000/";
+const baseUrl = "http://internetengineering.pythonanywhere.com/";
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: {
-    Authorization: localStorage.getItem("access_token")
-      ? "Bearer " + localStorage.getItem("access_token")
-      : null,
+    Authorization:
+      localStorage.getItem("token") !== null &&
+      localStorage.getItem("token") !== undefined &&
+      localStorage.getItem("token") !== "undefined"
+        ? "Token " + localStorage.getItem("token")
+        : null,
     "Content-Type": "application/json",
     accept: "application/json",
   },

@@ -7,6 +7,9 @@ import UserContext from "../../../store/UserContext";
 import { Marginer } from "../../../components/Marginer.jsx";
 import { AccountContext } from "../accountContext";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +17,32 @@ const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export function Login(props) {
+  const notifySuccess = () => {
+    toast.success("خوش آمدید", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const notifyError = () => {
+    toast.error("ایمیل یا رمز عبور نامعتبر است", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
@@ -41,24 +70,49 @@ export function Login(props) {
     e.preventDefault();
 
     axiosInstance
-      .post(`accounts/api/token/`, {
-        email: formData.email,
+      .post(`auth/login/`, {
+        username: formData.email,
         password: formData.password,
       })
       .then((res) => {
-        if (res.status === 200) {
-          login(res.data.type, res.data.username, res.data.user_phone_number);
-          localStorage.setItem("access_token", res.data.access);
-          localStorage.setItem("refresh_token", res.data.refresh);
-          axiosInstance.defaults.headers["Authorization"] =
-            "Bearer " + localStorage.getItem("access_token");
-          navigate(-1);
+        console.log(res);
+        if (res.status >= 200 && res.status < 300) {
+          notifySuccess();
+          setTimeout(() => {
+            login(
+              res.data.name,
+              res.data.user_id,
+              res.data.phone_number,
+              res.data.email,
+              res.data.rooyesh
+            );
+            localStorage.setItem("token", res.data.token);
+            axiosInstance.defaults.headers["Authorization"] =
+              "Token " + localStorage.getItem("token");
+          }, 3000);
         }
+      })
+      .catch((e) => {
+        console.log(e);
+        notifyError();
       });
   };
 
   return (
     <div className={classes.boxContainer}>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
       <Marginer direction="vertical" margin="2rem" />
       <form className={classes.boxContainer__formContainer}>
         <input

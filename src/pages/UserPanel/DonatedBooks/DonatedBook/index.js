@@ -12,7 +12,8 @@ function DonatedBook({
   translator_name,
   print_year,
   isbn,
-  status,
+  is_donated,
+  is_received,
 }) {
   return (
     <div className={classes.DonatedBook}>
@@ -58,23 +59,34 @@ function DonatedBook({
           </span>
         </div>
 
-        <div className={classes.DonatedBook__description__container}>
+        {/* <div className={classes.DonatedBook__description__container}>
           <span className={classes.DonatedBook__description__name}>
             <span className={classes.DonatedBook__description__key}>
               شابک:{" "}
             </span>
             {digitsEnToFa(isbn)}
           </span>
-        </div>
+        </div> */}
 
         <div className={classes.DonatedBook__description__container}>
           <span className={classes.DonatedBook__description__name}>
             <span className={classes.DonatedBook__description__key}>
-              وضعیت:{" "}
+              وضعیت اهدا:{" "}
             </span>
-            {"اهدا شده؟"}
+            {is_donated === true ? "اهدا شده" : "اهدا نشده"}
           </span>
         </div>
+
+        {is_donated === true && (
+          <div className={classes.DonatedBook__description__container}>
+            <span className={classes.DonatedBook__description__name}>
+              <span className={classes.DonatedBook__description__key}>
+                وضعیت دریافت:{" "}
+              </span>
+              {is_received === true ? "دریافت شده" : "دریافت نشده"}
+            </span>
+          </div>
+        )}
       </div>
       <div className={classes.DonatedBook__btns}>
         <button

@@ -1,8 +1,16 @@
 import "./App.css";
 import { routes } from "./routes";
 import { Route, Routes } from "react-router-dom";
+import UserContext from "./store/UserContext";
+import { useContext, useEffect } from "react";
 
 function App() {
+  const { checkLogin } = useContext(UserContext);
+  useEffect(() => {
+    console.log("app run!!!");
+    checkLogin();
+  }, []);
+
   return (
     <Routes>
       {routes.map((route) => (

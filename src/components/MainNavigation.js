@@ -9,14 +9,15 @@ import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 const loginIcon = <FontAwesomeIcon icon={faArrowRightToBracket} />;
 const booksIcon = <FontAwesomeIcon icon={faBook} />;
 const infoIcon = <FontAwesomeIcon icon={faCircleInfo} />;
+const userIcon = <FontAwesomeIcon icon={faUser} />;
 const contactIcon = <FontAwesomeIcon icon={faPhone} />;
 
 function MainNavigation() {
   const { user } = useContext(UserContext);
-  // user.auth = true;
   return (
     <header className={classes.header}>
       <div className={classes.content}>
@@ -53,7 +54,7 @@ function MainNavigation() {
             <div className={classes.container__btns}>
               <Link to="/user-panel" className={classes.link}>
                 <Button color="white" className={classes.header__navButton}>
-                  <i className={classNames(classes.header__login_logo)} />
+                  <i className={classes.header__login_logo}>{userIcon}</i>
                   حساب کاربری
                 </Button>
               </Link>
