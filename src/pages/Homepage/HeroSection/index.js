@@ -17,7 +17,7 @@ function HeroSection() {
           </h1>
 
           <div>
-            <Link to={user.auth ? "/survey" : "/account-box"}>
+            <Link to={"/books"}>
               <Button
                 color="purple"
                 className={classes["HeroSection__button--right"]}

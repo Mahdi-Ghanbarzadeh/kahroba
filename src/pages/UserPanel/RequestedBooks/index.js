@@ -4,6 +4,8 @@ import { useEffect, useState, useContext } from "react";
 import axiosInstance from "../../../axios";
 import { BeatLoader } from "react-spinners";
 import UserContext from "../../../store/UserContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const override = `
   display: inline-block;
@@ -11,6 +13,19 @@ const override = `
 `;
 
 function RequestedBooks() {
+  const notifyError = () => {
+    toast.error("خطایی هنگام دریافت کتاب‌های درخواستی رخ داد", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const { user, logout } = useContext(UserContext);
   console.log("requested books");
   console.log(user);
@@ -60,21 +75,35 @@ function RequestedBooks() {
 
   useEffect(() => {
     axiosInstance
-      .get(`book/request/myrequests/`, null, {
-        params: {
-          donator: user.userId,
-        },
-      })
+      .get(`book/request/myrequests/`)
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
           setBooks(res.data);
           setLoading(false);
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        notifyError();
       });
   }, []);
 
   return (
     <div className={classes.container}>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
       <div className={classes.container__headerContainer}>
         <div className={classes.container__headerContainer__header}>
           <span className={classes.container__headerContainer__text}>
@@ -98,7 +127,7 @@ function RequestedBooks() {
         />
       </div>
 
-      {!loading && (
+      {!loading && books.length !== 0 && (
         <div className={classes.container__donatedItems}>
           {books.map((book) => (
             <RequestedBook
