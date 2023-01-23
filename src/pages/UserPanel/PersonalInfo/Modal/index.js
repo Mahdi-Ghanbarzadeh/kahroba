@@ -50,37 +50,23 @@ function Modal(props) {
   }
 
   function confirmHandler() {
-    if (!formData.currentPassword && !formData.password) {
-      axiosInstance
-        .post(`accounts/edit_profile/`, {
-          ...(formData.email && { email: formData.email }),
-          ...(formData.fullName && { username: formData.fullName }),
-          ...(formData.phoneNumber && {
-            user_phone_number: formData.phoneNumber,
-          }),
-          ...(formData.postalCode && { user_postal_code: formData.postalCode }),
-          ...(formData.address && { user_address: formData.address }),
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            props.onConfirm();
-            formData.fullName && updateName(formData.fullName);
-            formData.phoneNumber && updatePhone(formData.phoneNumber);
-            props.setInformation(res.data);
-          }
-        });
-    } else {
-      axiosInstance
-        .put(`/accounts/api/change-password/`, {
-          new_password: formData.password,
-          old_password: formData.currentPassword,
-        })
-        .then((res) => {
-          if (res.status === 200) {
-            props.onConfirm();
-          }
-        });
-    }
+    axiosInstance
+      .patch(`auth/update/`, {
+        ...(formData.email && { email: formData.email }),
+        ...(formData.fullName && { name: formData.fullName }),
+        ...(formData.phoneNumber && {
+          phone_number: formData.phoneNumber,
+        }),
+        ...(formData.address && { post_address: formData.address }),
+      })
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          props.onConfirm();
+          formData.fullName && updateName(formData.fullName);
+          formData.phoneNumber && updatePhone(formData.phoneNumber);
+          props.setInformation(res.data);
+        }
+      });
   }
 
   return (

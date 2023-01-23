@@ -32,6 +32,7 @@ function DonatedBooks() {
 
   let [loading, setLoading] = useState(true);
   let [books, setBooks] = useState([]);
+  console.log("--current books--");
   console.log(books);
   console.log(books.length);
 
@@ -72,7 +73,7 @@ function DonatedBooks() {
 
   useEffect(() => {
     axiosInstance
-      .get(`book/all/`, null, {
+      .get(`book/all/`, {
         params: {
           donator: user.userId,
         },
@@ -132,6 +133,7 @@ function DonatedBooks() {
         <div className={classes.container__donatedItems}>
           {books.map((book) => (
             <DonatedBook
+              id={book.book_id}
               book_name={book.name}
               book_url={book.picture}
               author_name={book.author}
@@ -140,6 +142,7 @@ function DonatedBooks() {
               isbn={book.shabak}
               is_donated={book.is_donated}
               is_received={book.is_received}
+              setBooks={setBooks}
             />
           ))}
         </div>

@@ -10,20 +10,19 @@ const override = `
 `;
 
 function PersonalInfo() {
-  let [loading, setLoading] = useState(false);
+  let [loading, setLoading] = useState(true);
   let [information, setInformation] = useState([]);
+  console.log(information);
 
   useEffect(() => {
-    axiosInstance.get(`accounts/show_user_info/`).then((res) => {
-      if (res.status === 200) {
+    axiosInstance.get(`auth/info/`).then((res) => {
+      if (res.status >= 200 && res.status < 300) {
+        console.log(res);
         setLoading(false);
         setInformation(res.data);
       }
     });
   }, []);
-
-  information.username = "مهدی قنبرزاده";
-  information.user_phone_number = "09338682635";
 
   return (
     <div className={classes.container}>
@@ -34,12 +33,27 @@ function PersonalInfo() {
           </span>
         </div>
       </div>
-      <BeatLoader color="#8d5524" loading={loading} css={override} size={30} />
-      {!loading && (
+
+      <div className={classes.container__loader}>
+        {!loading && information.length === 0 && (
+          <span className={classes.container__description}>
+            کتابی یافت نشد!
+          </span>
+        )}
+        <BeatLoader
+          className={classes.container__description}
+          color="#8d5524"
+          loading={loading}
+          css={override}
+          size={30}
+        />
+      </div>
+
+      {!loading && information.length !== 0 && (
         <div className={classes.container__infoCards}>
           <InfoCard
             title={"نام و نام خانوادگی"}
-            value={information.username}
+            value={information.name}
             type={"text"}
             name={"fullName"}
             information={information}
@@ -47,7 +61,7 @@ function PersonalInfo() {
           />
           <InfoCard
             title={"شماره موبایل"}
-            value={information.user_phone_number}
+            value={information.phone_number}
             type={"tel"}
             name={"phoneNumber"}
             information={information}
@@ -63,28 +77,20 @@ function PersonalInfo() {
           />
           <InfoCard
             title={"آدرس"}
-            value={information.user_address}
+            value={information.post_address}
             type={"text"}
             name={"address"}
             information={information}
             setInformation={setInformation}
           />
-          <InfoCard
-            title={"کد پستی"}
-            value={information.user_postal_code}
-            type={"text"}
-            name={"postalCode"}
-            information={information}
-            setInformation={setInformation}
-          />
-          <InfoCard
+          {/* <InfoCard
             title={"رمز عبور"}
             value={"••••••••"}
             type={"password"}
             name={"password"}
             information={information}
             setInformation={setInformation}
-          />
+          /> */}
         </div>
       )}
     </div>

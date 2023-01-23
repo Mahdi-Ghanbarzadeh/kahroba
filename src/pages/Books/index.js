@@ -7,9 +7,10 @@ import BookItem from "./BookItem";
 import { useInView } from "react-intersection-observer";
 import { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../axios";
-import { PuffLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../store/UserContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const override = `
   display: inline-block;
@@ -17,7 +18,7 @@ const override = `
 `;
 
 function Books() {
-  let [loading, setLoading] = useState(false);
+  let [loading, setLoading] = useState(true);
   let [books, setBooks] = useState([]);
   console.log(books);
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Books() {
 
   useEffect(() => {
     axiosInstance
-      .get(`book/all/`, null, {
+      .get(`book/all/`, {
         params: {
           is_donated: false,
         },
@@ -53,30 +54,49 @@ function Books() {
     threshold: 1,
   });
 
-  function confirmShoppingHandler() {
-    axiosInstance.get(`/accounts/checkout/`).then((res) => {
-      if (res.status === 200) {
-        // setList(res.data);
-        // setLoading(false);
-        navigate("/user-panel/orders", { replace: true });
-      }
-    });
-    console.log("/accounts/checkout/");
-  }
+  // function confirmShoppingHandler() {
+  //   axiosInstance.get(`/accounts/checkout/`).then((res) => {
+  //     if (res.status === 200) {
+  //       // setList(res.data);
+  //       // setLoading(false);
+  //       navigate("/user-panel/orders", { replace: true });
+  //     }
+  //   });
+  //   console.log("/accounts/checkout/");
+  // }
 
   return (
     <>
       <MainNavigation />
-      {loading && (
-        <div className={classes.spinner}>
-          <PuffLoader
-            color="#6667ab"
-            loading={loading}
-            css={override}
-            size={100}
-          />
-        </div>
-      )}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
+      {/* <div className={classes.container__loader}></div> */}
+
+      <div className={classes.Books__headerContainer} ref={ref}>
+        {!loading && books.length === 0 && (
+          <span className={classes.container__description}>
+            کتابی یافت نشد!
+          </span>
+        )}
+        <BeatLoader
+          className={classes.container__description}
+          color="#8d5524"
+          loading={loading}
+          css={override}
+          size={30}
+        />
+      </div>
 
       {!loading && (
         <section className={classes.Books}>
@@ -103,6 +123,10 @@ function Books() {
                     isbn={element.shabak}
                     description={element.description}
                     picture={element.picture}
+                    donator={element.donator}
+                    is_donated={element.is_donated}
+                    is_received={element.is_received}
+                    is_requested_before={element.is_requested_before}
                     setBooks={setBooks}
                   />
                 ))}

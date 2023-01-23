@@ -15,6 +15,18 @@
   gap: 2rem;
   position: relative;
 
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__description {
+    margin-top: 17rem;
+    color: #c68642;
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
   @media (max-width: 64em) {
     max-width: 70rem;
     display: flex;
@@ -48,10 +60,10 @@
     padding-right: 1rem;
     padding-left: 3.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 0.3rem solid #c68642;
+    border-bottom: 0.3rem solid #8d5524;
 
     &__text {
-      color: #c68642;
+      color: #8d5524;
       font-size: 1.8rem;
       font-weight: 600;
     }
@@ -60,7 +72,7 @@
       font-size: 1.5rem;
       color: #fff;
       color: #f3f0ff;
-      background-color: #c68642;
+      background-color: #8d5524;
       border-radius: 35%;
       padding: 0 0.8rem 0 0.8rem;
       position: absolute;
