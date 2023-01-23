@@ -3,6 +3,7 @@ import InfoCard from "./InfoCard";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const override = `
   display: inline-block;
@@ -26,6 +27,20 @@ function PersonalInfo() {
 
   return (
     <div className={classes.container}>
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
+
       <div className={classes.container__headerContainer}>
         <div className={classes.container__headerContainer__header}>
           <span className={classes.container__headerContainer__text}>

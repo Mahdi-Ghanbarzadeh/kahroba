@@ -9,11 +9,40 @@ import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Marginer } from "../../../../components/Marginer";
 import UserContext from "../../../../store/UserContext";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 const close = <FontAwesomeIcon icon={faXmark} />;
 
 function Modal(props) {
+  const notifySuccess = (message) => {
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const notifyError = (message) => {
+    toast.error(message, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const [passwordShown1, setPasswordShown1] = useState(false);
   const togglePasswordVisiblity1 = () => {
     setPasswordShown1(passwordShown1 ? false : true);
@@ -61,11 +90,17 @@ function Modal(props) {
       })
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
-          props.onConfirm();
-          formData.fullName && updateName(formData.fullName);
-          formData.phoneNumber && updatePhone(formData.phoneNumber);
-          props.setInformation(res.data);
+          notifySuccess("ویرایش با موفقیت انجام شد");
+          setTimeout(() => {
+            props.onConfirm();
+            formData.fullName && updateName(formData.fullName);
+            formData.phoneNumber && updatePhone(formData.phoneNumber);
+            props.setInformation(res.data);
+          }, 1500);
         }
+      })
+      .catch((err) => {
+        notifyError("خطایی رخ داد");
       });
   }
 

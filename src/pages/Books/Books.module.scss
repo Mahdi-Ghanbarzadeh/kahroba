@@ -8,7 +8,7 @@
 
 .Books {
   width: 100rem;
-  min-height: 80vh;
+  // min-height: 80vh;
   margin: 5rem auto 10rem auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -17,7 +17,7 @@
 
   &__loader {
     display: flex;
-    justify-content: center;
+    justify-self: center;
   }
 
   &__description {

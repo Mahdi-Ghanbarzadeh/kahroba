@@ -7,7 +7,7 @@ import BookItem from "./BookItem";
 import { useInView } from "react-intersection-observer";
 import { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../axios";
-import { BeatLoader } from "react-spinners";
+import { DotLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
@@ -81,60 +81,59 @@ function Books() {
         theme="light"
         toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
       />
-      {/* <div className={classes.container__loader}></div> */}
 
-      <div className={classes.Books__headerContainer} ref={ref}>
-        {!loading && books.length === 0 && (
-          <span className={classes.container__description}>
-            کتابی یافت نشد!
-          </span>
-        )}
-        <BeatLoader
-          className={classes.container__description}
-          color="#8d5524"
-          loading={loading}
-          css={override}
-          size={30}
-        />
-      </div>
-
-      {!loading && (
-        <section className={classes.Books}>
-          <div className={classes.Books__headerContainer} ref={ref}>
-            <div className={classes.Books__header}>
-              <span className={classes.Books__header__text}>کتاب‌ها</span>
-              <span className={classes.Books__header__number}>
-                {digitsEnToFa(books.length)}
-              </span>
-            </div>
-          </div>
-
-          {books.length !== 0 && (
-            <>
-              <div className={classes.Books__BookItem}>
-                {console.log(books.total_price)}
-                {books.map((element) => (
-                  <BookItem
-                    id={element.book_id}
-                    name={element.name}
-                    author={element.author}
-                    translator={element.translator}
-                    print_year={element.publish_year}
-                    isbn={element.shabak}
-                    description={element.description}
-                    picture={element.picture}
-                    donator={element.donator}
-                    is_donated={element.is_donated}
-                    is_received={element.is_received}
-                    is_requested_before={element.is_requested_before}
-                    setBooks={setBooks}
-                  />
-                ))}
-              </div>
-            </>
+      <section className={classes.Books}>
+        <div className={classes.Books__loader}>
+          {!loading && books.length === 0 && (
+            <span className={classes.Books__description}>کتابی یافت نشد!</span>
           )}
-        </section>
-      )}
+          <DotLoader
+            className={classes.Books__description}
+            color="#8d5524"
+            loading={loading}
+            css={override}
+            size={60}
+          />
+        </div>
+
+        {!loading && books.length !== 0 && (
+          <>
+            <div className={classes.Books__headerContainer} ref={ref}>
+              <div className={classes.Books__header}>
+                <span className={classes.Books__header__text}>کتاب‌ها</span>
+                <span className={classes.Books__header__number}>
+                  {digitsEnToFa(books.length)}
+                </span>
+              </div>
+            </div>
+
+            {books.length !== 0 && (
+              <>
+                <div className={classes.Books__BookItem}>
+                  {console.log(books.total_price)}
+                  {books.map((element) => (
+                    <BookItem
+                      id={element.book_id}
+                      name={element.name}
+                      author={element.author}
+                      translator={element.translator}
+                      print_year={element.publish_year}
+                      isbn={element.shabak}
+                      description={element.description}
+                      picture={element.picture}
+                      donator={element.donator}
+                      is_donated={element.is_donated}
+                      is_received={element.is_received}
+                      is_requested_before={element.is_requested_before}
+                      setBooks={setBooks}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+        )}
+      </section>
     </>
   );
 }
