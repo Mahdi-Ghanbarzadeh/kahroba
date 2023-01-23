@@ -7,9 +7,14 @@ import PersonalInfo from "./pages/UserPanel/PersonalInfo";
 import DonatedBooks from "./pages/UserPanel/DonatedBooks";
 import RequestedBooks from "./pages/UserPanel/RequestedBooks";
 import NotFound from "./pages/NotFound";
+import Books from "./pages/Books";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
+  {
+    path: "/books",
+    element: <Books />,
+  },
   {
     path: "/account-box",
     element: <AccountBox />,

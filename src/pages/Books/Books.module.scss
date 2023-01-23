@@ -1,0 +1,77 @@
+.spinner {
+  height: 80vh;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding-top: -5rem;
+}
+
+.Books {
+  width: 100rem;
+  min-height: 80vh;
+  margin: 5rem auto 10rem auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  position: relative;
+
+  @media (max-width: 64em) {
+    max-width: 70rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 45em) {
+    max-width: 65rem;
+  }
+
+  @media (max-width: 38em) {
+    max-width: 55rem;
+  }
+
+  @media (max-width: 32.5em) {
+    max-width: 45rem;
+  }
+
+  @media (max-width: 27em) {
+    max-width: 38rem;
+  }
+
+  &__headerContainer {
+    grid-column: 1 / span 2;
+    border-bottom: 1px solid #e0e0e2;
+  }
+
+  &__header {
+    position: relative;
+    display: inline-block;
+    padding-right: 1rem;
+    padding-left: 3.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.3rem solid #c68642;
+
+    &__text {
+      color: #c68642;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    &__number {
+      font-size: 1.5rem;
+      color: #fff;
+      color: #f3f0ff;
+      background-color: #c68642;
+      border-radius: 35%;
+      padding: 0 0.8rem 0 0.8rem;
+      position: absolute;
+      right: 77%;
+      top: 12%;
+    }
+  }
+
+  &__BookItem {
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    // overflow: hidden;
+  }
+}

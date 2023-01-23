@@ -1,9 +1,12 @@
 import classes from "./RequestedBook.module.scss";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
-const trash = <FontAwesomeIcon icon={faTrashCan} />;
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faFlag } from "@fortawesome/free-solid-svg-icons";
+const trash = <FontAwesomeIcon icon={faTrash} />;
+const confirm = <FontAwesomeIcon icon={faCircleCheck} />;
+const flag = <FontAwesomeIcon icon={faFlag} />;
 
 function RequestedBook({
   book_name,
@@ -82,7 +85,7 @@ function RequestedBook({
 
           // onClick={}
         >
-          {trash}
+          {flag}
           &nbsp; ثبت شکایت
         </button>
         <button
@@ -90,7 +93,7 @@ function RequestedBook({
 
           // onClick={}
         >
-          {trash}
+          {confirm}
           &nbsp; تایید دریافت
         </button>
         <button

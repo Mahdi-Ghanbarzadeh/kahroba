@@ -1,9 +1,11 @@
 import classes from "./DonatedBook.module.scss";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
-const trash = <FontAwesomeIcon icon={faTrashCan} />;
+const trash = <FontAwesomeIcon icon={faTrash} />;
+const confirm = <FontAwesomeIcon icon={faCircleCheck} />;
 
 function DonatedBook({
   book_name,
@@ -94,7 +96,7 @@ function DonatedBook({
 
           // onClick={}
         >
-          {trash}
+          {confirm}
           &nbsp; اهدا
         </button>
         <button

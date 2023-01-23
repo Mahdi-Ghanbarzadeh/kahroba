@@ -1,9 +1,8 @@
-import classes from "./ShoppingList.module.scss";
-import MainNavigation from "../../components/layout/MainNavigation";
-import Footer from "../../components/layout/Footer";
+import classes from "./Books.module.scss";
+import MainNavigation from "../../components/MainNavigation";
 import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
-import Button from "../../components/shared/Button";
-import ShoppingItem from "./ShoppingItem";
+import Button from "../../components/Button";
+import BookItem from "./BookItem";
 
 import { useInView } from "react-intersection-observer";
 import { useContext, useEffect, useState } from "react";
@@ -17,25 +16,37 @@ const override = `
   margin: 15rem auto 0;
 `;
 
-function ShoppingList() {
-  let [loading, setLoading] = useState(true);
-  let [list, setList] = useState([]);
+function Books() {
+  let [loading, setLoading] = useState(false);
+  let [books, setBooks] = useState([]);
+  console.log(books);
   const navigate = useNavigate();
 
   let { user } = useContext(UserContext);
-  useEffect(() => {
-    if (user.type === "seller") {
-      navigate("/");
-    }
-  }, [user.auth, user.type, navigate]);
+  // useEffect(() => {
+  //   if (user.type === "seller") {
+  //     navigate("/");
+  //   }
+  // }, [user.auth, user.type, navigate]);
 
   useEffect(() => {
-    axiosInstance.get(`/accounts/show_cart/`).then((res) => {
-      if (res.status === 200) {
-        setList(res.data);
+    axiosInstance
+      .get(`book/all/`, null, {
+        params: {
+          is_donated: false,
+        },
+      })
+      .then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          setBooks(res.data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
         setLoading(false);
-      }
-    });
+        // notifyError();
+        console.log(err);
+      });
   }, []);
 
   const { ref, inView, entry } = useInView({
@@ -68,94 +79,39 @@ function ShoppingList() {
       )}
 
       {!loading && (
-        <section className={classes.ShoppingList}>
-          <div className={classes.ShoppingList__headerContainer} ref={ref}>
-            <div className={classes.ShoppingList__header}>
-              <span className={classes.ShoppingList__header__text}>
-                سبد خرید
-              </span>
-              <span className={classes.ShoppingList__header__number}>
-                {digitsEnToFa(list.products.length)}
+        <section className={classes.Books}>
+          <div className={classes.Books__headerContainer} ref={ref}>
+            <div className={classes.Books__header}>
+              <span className={classes.Books__header__text}>کتاب‌ها</span>
+              <span className={classes.Books__header__number}>
+                {digitsEnToFa(books.length)}
               </span>
             </div>
           </div>
 
-          {list.products.length !== 0 && (
+          {books.length !== 0 && (
             <>
-              <div className={classes.ShoppingList__shoppingItems}>
-                {console.log(list.total_price)}
-                {list.products.map((element) => (
-                  <ShoppingItem
-                    id={element.id}
-                    name={element.product_name}
-                    price={element.product_price}
-                    img={element.upload}
-                    setProducts={setList}
+              <div className={classes.Books__BookItem}>
+                {console.log(books.total_price)}
+                {books.map((element) => (
+                  <BookItem
+                    id={element.book_id}
+                    name={element.name}
+                    author={element.author}
+                    translator={element.translator}
+                    print_year={element.publish_year}
+                    isbn={element.shabak}
+                    description={element.description}
+                    picture={element.picture}
+                    setBooks={setBooks}
                   />
                 ))}
-              </div>
-
-              <div
-                className={
-                  inView
-                    ? classes.ShoppingList__confirmBox
-                    : classes.ShoppingList__confirmBox__sticky
-                }
-              >
-                <div className={classes.ShoppingList__confirmContainer}>
-                  <div className={classes.ShoppingList__confirmBox__totalPrice}>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__totalPrice__text
-                      }
-                    >
-                      قیمت کل سفارش
-                    </span>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__totalPrice__price
-                      }
-                    >
-                      {digitsEnToFa(addCommas(list.total_price))} تومان
-                    </span>
-                  </div>
-                  <div className={classes.ShoppingList__confirmBox__payable}>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__payable__text
-                      }
-                    >
-                      قیمت قابل پرداخت
-                    </span>
-                    <span
-                      className={
-                        classes.ShoppingList__confirmBox__payable__price
-                      }
-                    >
-                      {digitsEnToFa(addCommas(list.total_price_with_discount))}{" "}
-                      تومان
-                    </span>
-                  </div>
-                  <span className={classes.ShoppingList__confirmBox__note}>
-                    افزودن کالا به سبد خرید به معنی رزرو آن نیست. با توجه به
-                    محدودیت موجودی، سبد خود را ثبت و خرید را تکمیل کنید.
-                  </span>
-                  <Button
-                    color="purple"
-                    className={classes["ShoppingList__confirmBox__btn"]}
-                    onClickHandler={confirmShoppingHandler}
-                  >
-                    تکمیل خرید
-                  </Button>
-                </div>
               </div>
             </>
           )}
         </section>
       )}
-
-      <Footer />
     </>
   );
 }
-export default ShoppingList;
+export default Books;

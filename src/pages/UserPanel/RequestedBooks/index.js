@@ -34,44 +34,44 @@ function RequestedBooks() {
   let [books, setBooks] = useState([]);
   console.log(books);
 
-  // books = [
-  //   {
-  //     book_name: "نبرد من",
-  //     book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
-  //     author_name: "آدولف هيتلر",
-  //     translator_name: "فرشته اكبرپور",
-  //     print_year: "1390",
-  //     isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-  //     status: "نامشخص",
-  //   },
-  //   {
-  //     book_name: "نبرد من",
-  //     book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
-  //     author_name: "آدولف هيتلر",
-  //     translator_name: "فرشته اكبرپور",
-  //     print_year: "1390",
-  //     isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-  //     status: "پذیرفته شده",
-  //   },
-  //   {
-  //     book_name: "نبرد من",
-  //     book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
-  //     author_name: "آدولف هيتلر",
-  //     translator_name: "فرشته اكبرپور",
-  //     print_year: "1390",
-  //     isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-  //     status: "پذیرفته نشده",
-  //   },
-  //   {
-  //     book_name: "نبرد من",
-  //     book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
-  //     author_name: "آدولف هيتلر",
-  //     translator_name: "فرشته اكبرپور",
-  //     print_year: "1390",
-  //     isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
-  //     status: "نامشخص ",
-  //   },
-  // ];
+  books = [
+    {
+      book_name: "نبرد من",
+      book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
+      author_name: "آدولف هيتلر",
+      translator_name: "فرشته اكبرپور",
+      print_year: "1390",
+      isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
+      status: "نامشخص",
+    },
+    {
+      book_name: "نبرد من",
+      book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
+      author_name: "آدولف هيتلر",
+      translator_name: "فرشته اكبرپور",
+      print_year: "1390",
+      isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
+      status: "پذیرفته شده",
+    },
+    {
+      book_name: "نبرد من",
+      book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
+      author_name: "آدولف هيتلر",
+      translator_name: "فرشته اكبرپور",
+      print_year: "1390",
+      isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
+      status: "پذیرفته نشده",
+    },
+    {
+      book_name: "نبرد من",
+      book_url: "https://img.ketabrah.ir/img/l/2299213907953408.jpg",
+      author_name: "آدولف هيتلر",
+      translator_name: "فرشته اكبرپور",
+      print_year: "1390",
+      isbn: "۹۷۸۹۶۴۳۵۱۸۰۷۳",
+      status: "نامشخص ",
+    },
+  ];
 
   useEffect(() => {
     axiosInstance
