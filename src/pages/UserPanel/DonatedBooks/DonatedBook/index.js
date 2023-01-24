@@ -130,14 +130,16 @@ function DonatedBook({
           </span>
         </div>
 
-        <div className={classes.DonatedBook__description__container}>
-          <span className={classes.DonatedBook__description__name}>
-            <span className={classes.DonatedBook__description__key}>
-              مترجم:{" "}
+        {translator_name !== "" && (
+          <div className={classes.DonatedBook__description__container}>
+            <span className={classes.DonatedBook__description__name}>
+              <span className={classes.DonatedBook__description__key}>
+                مترجم:{" "}
+              </span>
+              {translator_name}
             </span>
-            {translator_name}
-          </span>
-        </div>
+          </div>
+        )}
 
         <div className={classes.DonatedBook__description__container}>
           <span className={classes.DonatedBook__description__name}>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import classes from "./../Login/login.module.scss";
 import UserContext from "../../../store/UserContext";
 import axiosInstance from "../../../axios";
@@ -19,7 +19,23 @@ const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 export function Signup(props) {
   const notifySuccess = () => {
-    toast.success("ثبت‌نام با موفقیت انجام شد", {
+    toast.success(
+      "ثبت‌نام با موفقیت انجام شد. ایمیل خود را تایید کنید و وارد شوید",
+      {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
+  };
+
+  const notifyError = (msg) => {
+    toast.error(msg, {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -31,18 +47,7 @@ export function Signup(props) {
     });
   };
 
-  const notifyError = () => {
-    toast.error("ایمیل وارد شده تکراری است", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
+  const form = useRef();
 
   const { switchToSignin } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
@@ -69,6 +74,20 @@ export function Signup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const emailRegex = new RegExp(
+      /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/,
+      "gm"
+    );
+
+    if (!formData.phoneNumber.startsWith("09")) {
+      notifyError("لطفا شماره تلفن صحیح وارد کنید");
+      return;
+    }
+    if (!emailRegex.test(formData.email)) {
+      notifyError("لطفا یک ایمیل صحیح وارد کنید");
+      return;
+    }
     console.log(formData);
     axiosInstance
       .post(`auth/register/`, {
@@ -79,24 +98,28 @@ export function Signup(props) {
       })
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
+          console.log("test");
           notifySuccess();
+          form.current.reset();
+          updateFormData(initialFormData);
+
           setTimeout(() => {
-            login(
-              res.data.name,
-              res.data.user_id,
-              res.data.phone_number,
-              res.data.email,
-              res.data.rooyesh
-            );
-            localStorage.setItem("token", res.data.token);
-            axiosInstance.defaults.headers["Authorization"] =
-              "Token " + localStorage.getItem("token");
-            navigate(-1);
+            // login(
+            //   res.data.name,
+            //   res.data.user_id,
+            //   res.data.phone_number,
+            //   res.data.email,
+            //   res.data.rooyesh
+            // );
+            // localStorage.setItem("token", res.data.token);
+            // axiosInstance.defaults.headers["Authorization"] =
+            // "Token " + localStorage.getItem("token");
+            navigate("");
           }, 3000);
         }
       })
       .catch((e) => {
-        notifyError();
+        notifyError("ایمیل وارد شده تکراری است");
       });
   };
 
@@ -115,7 +138,7 @@ export function Signup(props) {
         theme="light"
         toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
       />
-      <form className={classes.boxContainer__formContainer}>
+      <form ref={form} className={classes.boxContainer__formContainer}>
         <input
           className={classes.boxContainer__formContainer__input}
           name="fullName"

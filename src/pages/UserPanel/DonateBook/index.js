@@ -23,8 +23,8 @@ function DonateBook() {
     });
   };
 
-  const notifyError = () => {
-    toast.error("خطایی رخ داد", {
+  const notifyError = (msg) => {
+    toast.error(msg, {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -47,6 +47,23 @@ function DonateBook() {
   const onSubmit = (values) => {
     console.log(values);
     console.log(values.book_name);
+
+    const emailRegex = new RegExp(/^\d+$/);
+
+    if (
+      !(
+        (values.print_year > 1200 && values.print_year <= 1401) ||
+        (values.print_year > 1900 && values.print_year <= 2023)
+      )
+    ) {
+      notifyError("سال چاپ را صحیح وارد کنید");
+      return;
+    }
+
+    if (!emailRegex.test(values.isbn)) {
+      notifyError("شابک را صحیح وارد کنید");
+      return;
+    }
 
     axiosInstance
       .post(`book/register/`, {
@@ -75,7 +92,7 @@ function DonateBook() {
         }
       })
       .catch((err) => {
-        notifyError();
+        notifyError("خطایی رخ داد");
       });
   };
 
@@ -137,7 +154,8 @@ function DonateBook() {
         </div>
       </div>
       <span className={classes.container__description}>
-        لطفا مشخصات کتاب را وارد کنید (وارد کردن همه موارد الزامی است).
+        لطفا مشخصات کتاب را وارد کنید (وارد کردن همه موارد به جز مترجم الزامی
+        است).
       </span>
       <form className={classes.form}>
         <label className={classes.input}>
@@ -168,7 +186,7 @@ function DonateBook() {
             type="text"
             placeholder=" "
             {...register("translator_name", {
-              required: true,
+              required: false,
             })}
           />
           <span className={classes.input__label}>مترجم</span>
@@ -179,7 +197,7 @@ function DonateBook() {
             type="text"
             placeholder=" "
             {...register("print_year", {
-              required: true,
+              required: false,
             })}
           />
           <span className={classes.input__label}>سال چاپ</span>
@@ -215,7 +233,7 @@ function DonateBook() {
               required: true,
             })}
           />
-          <span className={classes.input__label}>توضیحات</span>
+          <span className={classes.input__label}>خلاصه کتاب</span>
         </label>
         <button
           onClick={handleSubmit(onSubmit)}

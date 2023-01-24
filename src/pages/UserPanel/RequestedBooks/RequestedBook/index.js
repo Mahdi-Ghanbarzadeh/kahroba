@@ -28,6 +28,7 @@ function RequestedBook({
   description,
   donator,
   setBooks,
+  phoneNumber,
 }) {
   const notifySuccess = (message) => {
     toast.success(message, {
@@ -98,6 +99,7 @@ function RequestedBook({
               is_reported: is_reported,
               status: status,
               user: user,
+              phone_number: phoneNumber,
             },
             ...prev.filter((book) => book.book.book_id !== id),
           ]);
@@ -135,6 +137,7 @@ function RequestedBook({
               is_reported: true,
               status: status,
               user: user,
+              phone_number: phoneNumber,
             },
             ...prev.filter((book) => book.book.book_id !== id),
           ]);
@@ -171,14 +174,16 @@ function RequestedBook({
           </span>
         </div>
 
-        <div className={classes.RequestedBook__description__container}>
-          <span className={classes.RequestedBook__description__name}>
-            <span className={classes.RequestedBook__description__key}>
-              مترجم:{" "}
+        {translator_name !== "" && (
+          <div className={classes.RequestedBook__description__container}>
+            <span className={classes.RequestedBook__description__name}>
+              <span className={classes.RequestedBook__description__key}>
+                مترجم:{" "}
+              </span>
+              {translator_name}
             </span>
-            {translator_name}
-          </span>
-        </div>
+          </div>
+        )}
 
         <div className={classes.RequestedBook__description__container}>
           <span className={classes.RequestedBook__description__name}>
@@ -215,9 +220,9 @@ function RequestedBook({
           <div className={classes.RequestedBook__description__container}>
             <span className={classes.RequestedBook__description__name}>
               <span className={classes.RequestedBook__description__key}>
-                وضعیت دریافت:{" "}
+                شماره تلفن اهداکننده:{" "}
               </span>
-              {is_received === true ? "دریافت شده" : "دریافت نشده"}
+              {digitsEnToFa(phoneNumber)}
             </span>
           </div>
         )}

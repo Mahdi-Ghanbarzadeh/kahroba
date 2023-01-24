@@ -126,6 +126,9 @@ function BookItem({
                 ...prev.filter((book) => book.book_id !== id),
               ]);
             }
+          })
+          .catch((err) => {
+            notifyError("موجودی رویش شما کافی نیست");
           });
       }
     }
@@ -152,12 +155,16 @@ function BookItem({
           </span>
         </div>
 
-        <div className={classes.BookItem__description__container}>
-          <span className={classes.BookItem__description__name}>
-            <span className={classes.BookItem__description__key}>مترجم: </span>
-            {translator}
-          </span>
-        </div>
+        {translator !== "" && (
+          <div className={classes.BookItem__description__container}>
+            <span className={classes.BookItem__description__name}>
+              <span className={classes.BookItem__description__key}>
+                مترجم:{" "}
+              </span>
+              {translator}
+            </span>
+          </div>
+        )}
 
         <div className={classes.BookItem__description__container}>
           <span className={classes.BookItem__description__name}>

@@ -146,6 +146,7 @@ function RequestedBooks() {
               user={book.user}
               description={book.book.description}
               donator={book.book.donator}
+              phoneNumber={book.phone_number}
               setBooks={setBooks}
             />
           ))}
