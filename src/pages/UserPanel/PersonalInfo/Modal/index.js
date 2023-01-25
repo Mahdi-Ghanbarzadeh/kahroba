@@ -8,6 +8,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Marginer } from "../../../../components/Marginer";
 import UserContext from "../../../../store/UserContext";
+import { useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +18,9 @@ const eye_slash = <FontAwesomeIcon icon={faEyeSlash} />;
 const close = <FontAwesomeIcon icon={faXmark} />;
 
 function Modal(props) {
+  const { user, logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const notifySuccess = (message) => {
     toast.success(message, {
       position: "top-right",
@@ -90,12 +94,24 @@ function Modal(props) {
       })
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
-          notifySuccess("ویرایش با موفقیت انجام شد");
+          console.log(formData.email);
           setTimeout(() => {
-            props.onConfirm();
-            formData.fullName && updateName(formData.fullName);
-            formData.phoneNumber && updatePhone(formData.phoneNumber);
-            props.setInformation(res.data);
+            if (!formData.email) {
+              notifySuccess("ویرایش با موفقیت انجام شد");
+              props.onConfirm();
+              formData.fullName && updateName(formData.fullName);
+              formData.phoneNumber && updatePhone(formData.phoneNumber);
+              props.setInformation(res.data);
+            } else {
+              notifySuccess("ویرایش ایمیل  با موفقیت انجام شد");
+              notifySuccess("لطفا ایمیل جدید خود را تایید کنید ");
+
+              setTimeout(() => {
+                logout();
+                navigate("/");
+                window.scroll(0, 0);
+              }, 1500);
+            }
           }, 1500);
         }
       })

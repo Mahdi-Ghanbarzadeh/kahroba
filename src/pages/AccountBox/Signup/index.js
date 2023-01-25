@@ -88,6 +88,11 @@ export function Signup(props) {
       notifyError("لطفا یک ایمیل صحیح وارد کنید");
       return;
     }
+
+    if (formData.password.length < 8) {
+      notifyError("لطفا یک پسورد صحیح وارد کنید");
+      return;
+    }
     console.log(formData);
     axiosInstance
       .post(`auth/register/`, {
