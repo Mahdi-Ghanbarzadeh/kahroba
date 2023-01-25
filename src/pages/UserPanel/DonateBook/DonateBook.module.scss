@@ -47,11 +47,32 @@
 .input {
   position: relative;
   width: 60%;
+  display: flex;
+  gap: 8rem;
+  flex-direction: row;
 
   &__label {
     position: absolute;
     right: 0;
     top: 0;
+    padding: 0 1rem;
+    margin: -1rem 1rem;
+    white-space: nowrap;
+    transform: translate(0, 0);
+    transform-origin: 0 0;
+    background: white;
+    transition: transform 120ms ease-in;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    border: #e0e0e6;
+    color: #2c292b;
+  }
+
+  &__picture {
+    position: absolute;
+    right: 0;
+    top: 1rem;
     padding: 0 1rem;
     margin: -1rem 1rem;
     white-space: nowrap;

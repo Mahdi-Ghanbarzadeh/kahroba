@@ -65,16 +65,50 @@ function DonateBook() {
       return;
     }
 
+    console.log(values.book_url[0]);
+
+    axiosInstance.defaults.headers["Content-Type"] = "multipart/form-data";
+    console.log(axiosInstance.defaults.headers);
+    console.log("---");
+    const formData = new FormData();
+    // formData.append("file", values.book_url);
+    console.log(values.book_url);
+    console.log(values.book_url[0]);
+    formData.append("name", values.book_name);
+    formData.append("description", values.description);
+    formData.append("author", values.author_name);
+    formData.append("picture", values.book_url[0]);
+    // formData.append("picture", values.book_url);
+    formData.append("translator", values.translator_name);
+    formData.append("shabak", values.isbn);
+    formData.append("publish_year", values.print_year);
+    console.log(formData);
+    console.log(axiosInstance.defaults.headers["Content-Type"]);
+    // console.log(axiosInstance.defaults.headers.common);
+    // console.log(axiosInstance.defaults.headers.common["Content-Type"]);
+    // console.log(axiosInstance.defaults.headers.post["Content-Type"]);
+
+    // axiosInstance.defaults.headers.common["Auth-Token"] = "foo bar";
+
     axiosInstance
-      .post(`book/register/`, {
-        name: values.book_name,
-        description: values.description,
-        author: values.author_name,
-        picture: values.book_url,
-        translator: values.translator_name,
-        shabak: values.isbn,
-        publish_year: values.print_year,
-      })
+      .post(
+        `book/register/`,
+        formData,
+        // {
+        //   name: values.book_name,
+        //   description: values.description,
+        //   author: values.author_name,
+        //   picture: values.book_url,
+        //   translator: values.translator_name,
+        //   shabak: values.isbn,
+        //   publish_year: values.print_year,
+        // }
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         if (res.status >= 200 && res.status < 300) {
           console.log(res);
@@ -94,6 +128,10 @@ function DonateBook() {
       .catch((err) => {
         notifyError("خطایی رخ داد");
       });
+
+    console.log("---");
+    axiosInstance.defaults.headers["Content-Type"] = "application/json";
+    console.log(axiosInstance.defaults.headers);
   };
 
   // let myPromise;
@@ -213,17 +251,7 @@ function DonateBook() {
           />
           <span className={classes.input__label}>شابک</span>
         </label>
-        <label className={classes.input}>
-          <input
-            className={classes.input__field}
-            type="text"
-            placeholder=" "
-            {...register("book_url", {
-              required: true,
-            })}
-          />
-          <span className={classes.input__label}>عکس</span>
-        </label>
+
         <label className={classes.input}>
           <input
             className={classes.input__field}
@@ -235,6 +263,27 @@ function DonateBook() {
           />
           <span className={classes.input__label}>خلاصه کتاب</span>
         </label>
+
+        <label className={classes.input}>
+          <br />
+          {/* <input
+            className={classes.input__field}
+            type="text"
+            placeholder=" "
+            {...register("book_url", {
+              required: true,
+            })}
+          /> */}
+          <input
+            type="file"
+            accept="image/png, image/jpeg"
+            {...register("book_url", {
+              required: true,
+            })}
+          />
+          <span className={classes.input__picture}>عکس</span>
+        </label>
+
         <button
           onClick={handleSubmit(onSubmit)}
           className={isValid ? classes.btn : classes["btn--disable"]}
