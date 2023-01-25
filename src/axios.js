@@ -1,6 +1,6 @@
 import axios from "axios";
 // const baseUrl = "http://internetengineering.pythonanywhere.com/";
-const baseUrl = "https://api.feshin.me/";
+const baseUrl = "https://feshin.me/";
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
