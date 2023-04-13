@@ -98,14 +98,14 @@ function PersonalInfo() {
             information={information}
             setInformation={setInformation}
           />
-          {/* <InfoCard
+          <InfoCard
             title={"رمز عبور"}
             value={"••••••••"}
             type={"password"}
             name={"password"}
             information={information}
             setInformation={setInformation}
-          /> */}
+          />
         </div>
       )}
     </div>

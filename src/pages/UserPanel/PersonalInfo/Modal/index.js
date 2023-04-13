@@ -83,42 +83,100 @@ function Modal(props) {
   }
 
   function confirmHandler() {
-    axiosInstance
-      .patch(`auth/update/`, {
-        ...(formData.email && { email: formData.email }),
-        ...(formData.fullName && { name: formData.fullName }),
-        ...(formData.phoneNumber && {
-          phone_number: formData.phoneNumber,
-        }),
-        ...(formData.address && { post_address: formData.address }),
-      })
-      .then((res) => {
-        if (res.status >= 200 && res.status < 300) {
-          console.log(formData.email);
-          setTimeout(() => {
-            if (!formData.email) {
+    console.log(formData);
+    if (!formData.currentPassword && !formData.password) {
+      axiosInstance
+        .patch(`auth/update/`, {
+          ...(formData.email && { email: formData.email }),
+          ...(formData.fullName && { name: formData.fullName }),
+          ...(formData.phoneNumber && {
+            phone_number: formData.phoneNumber,
+          }),
+          ...(formData.address && { post_address: formData.address }),
+        })
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            console.log(formData.email);
+            setTimeout(() => {
+              if (!formData.email) {
+                notifySuccess("ویرایش با موفقیت انجام شد");
+                props.onConfirm();
+                formData.fullName && updateName(formData.fullName);
+                formData.phoneNumber && updatePhone(formData.phoneNumber);
+                props.setInformation(res.data);
+              } else {
+                notifySuccess("ویرایش ایمیل  با موفقیت انجام شد");
+                notifySuccess("لطفا ایمیل جدید خود را تایید کنید ");
+
+                setTimeout(() => {
+                  logout();
+                  navigate("/");
+                  window.scroll(0, 0);
+                }, 1500);
+              }
+            }, 1500);
+          }
+        })
+        .catch((err) => {
+          notifyError("خطایی رخ داد");
+        });
+    } else {
+      axiosInstance
+        .post(`auth/change-password/`, {
+          old_password: formData.currentPassword,
+          new_password: formData.password,
+        })
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            setTimeout(() => {
               notifySuccess("ویرایش با موفقیت انجام شد");
               props.onConfirm();
-              formData.fullName && updateName(formData.fullName);
-              formData.phoneNumber && updatePhone(formData.phoneNumber);
-              props.setInformation(res.data);
-            } else {
-              notifySuccess("ویرایش ایمیل  با موفقیت انجام شد");
-              notifySuccess("لطفا ایمیل جدید خود را تایید کنید ");
-
-              setTimeout(() => {
-                logout();
-                navigate("/");
-                window.scroll(0, 0);
-              }, 1500);
-            }
-          }, 1500);
-        }
-      })
-      .catch((err) => {
-        notifyError("خطایی رخ داد");
-      });
+            }, 1500);
+          }
+        })
+        .catch((err) => {
+          notifyError("خطایی رخ داد");
+        });
+    }
   }
+
+  // function confirmHandler() {
+  //   axiosInstance
+  //     .patch(`auth/update/`, {
+  //       ...(formData.email && { email: formData.email }),
+  //       ...(formData.fullName && { name: formData.fullName }),
+  //       ...(formData.phoneNumber && {
+  //         phone_number: formData.phoneNumber,
+  //       }),
+  //       ...(formData.address && { post_address: formData.address }),
+  //     })
+  //     .then((res) => {
+  //       if (res.status >= 200 && res.status < 300) {
+  //         console.log(formData.email);
+  //         setTimeout(() => {
+  //           if (!formData.email) {
+  //             notifySuccess("ویرایش با موفقیت انجام شد");
+  //             props.onConfirm();
+  //             formData.fullName && updateName(formData.fullName);
+  //             formData.phoneNumber && updatePhone(formData.phoneNumber);
+  //             props.setInformation(res.data);
+  //           } else {
+  //             notifySuccess("ویرایش ایمیل  با موفقیت انجام شد");
+  //             notifySuccess("لطفا ایمیل جدید خود را تایید کنید ");
+
+  //             setTimeout(() => {
+  //               logout();
+  //               navigate("/");
+  //               window.scroll(0, 0);
+  //             }, 1500);
+  //           }
+  //         }, 1500);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       notifyError("خطایی رخ داد");
+  //     });
+  // }
 
   return (
     <div className={classes.modal}>
