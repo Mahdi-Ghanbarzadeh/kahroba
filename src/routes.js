@@ -8,12 +8,17 @@ import DonatedBooks from "./pages/UserPanel/DonatedBooks";
 import RequestedBooks from "./pages/UserPanel/RequestedBooks";
 import NotFound from "./pages/NotFound";
 import Books from "./pages/Books";
+import { Book } from "./pages/Book/Book.tsx";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
   {
     path: "/books",
     element: <Books />,
+  },
+  {
+    path: "/book",
+    element: <Book />,
   },
   {
     path: "/account-box",
