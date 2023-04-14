@@ -5,8 +5,35 @@ import classes from "./ForgotPassword.module.scss";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../../store/UserContext";
 import axiosInstance from "../../../axios";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function ForgotPassword() {
+  const notifySuccess = () => {
+    toast.success("لطفا ایمیل خود را بررسی کنید", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
+  const notifyError = () => {
+    toast.error("حساب کاربری با ایمیل وارد شده یافت نشد", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const navigate = useNavigate();
 
   let { user } = useContext(UserContext);
@@ -34,17 +61,39 @@ export default function ForgotPassword() {
     e.preventDefault();
     console.log(formData);
     axiosInstance
-      .post(`accounts/reset_password/`, {
+      .post(`auth/reset-password/`, {
         email: formData.email,
       })
       .then((res) => {
-        navigate(-1);
+        console.log(res);
+        console.log(res.status);
+        if (res.status >= 200 && res.status < 300) {
+          notifySuccess();
+          updateFormData(initialFormData);
+        }
+      })
+      .catch((e) => {
+        console.log("test");
+        notifyError();
       });
     console.log(formData);
   };
 
   return (
     <div className={classes.appContainer}>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ fontSize: "16px", fontFamily: "Vazirmatn" }}
+      />
       <div className={classes.appContainer__boxContainer}>
         <div className={classes.appContainer__boxContainer__topContainer}>
           <div
@@ -97,6 +146,7 @@ export default function ForgotPassword() {
             placeholder="ایمیل"
             autoFocus
             onChange={handleChange}
+            value={formData.email}
             name="email"
           />
           <Marginer direction="vertical" margin={20} />

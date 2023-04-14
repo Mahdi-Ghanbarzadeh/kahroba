@@ -52,7 +52,7 @@ function PersonalInfo() {
       <div className={classes.container__loader}>
         {!loading && information.length === 0 && (
           <span className={classes.container__description}>
-            کتابی یافت نشد!
+            اطلاعات دریافت نشد!
           </span>
         )}
         <BeatLoader
