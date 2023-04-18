@@ -23,6 +23,7 @@ function DonatedBook({
   is_donated,
   is_received,
   setBooks,
+  number_of_request,
 }) {
   const { user, logout } = useContext(UserContext);
 
@@ -158,6 +159,15 @@ function DonatedBook({
             {digitsEnToFa(isbn)}
           </span>
         </div> */}
+
+        <div className={classes.DonatedBook__description__container}>
+          <span className={classes.DonatedBook__description__name}>
+            <span className={classes.DonatedBook__description__key}>
+              تعداد درخواست:{" "}
+            </span>
+            {`${digitsEnToFa(number_of_request)} عدد`}
+          </span>
+        </div>
 
         <div className={classes.DonatedBook__description__container}>
           <span className={classes.DonatedBook__description__name}>

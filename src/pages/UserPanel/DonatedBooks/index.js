@@ -142,6 +142,7 @@ function DonatedBooks() {
               isbn={book.shabak}
               is_donated={book.is_donated}
               is_received={book.is_received}
+              number_of_request={book.number_of_request}
               setBooks={setBooks}
             />
           ))}

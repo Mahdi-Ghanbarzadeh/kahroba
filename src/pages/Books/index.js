@@ -30,6 +30,21 @@ function Books() {
   //   }
   // }, [user.auth, user.type, navigate]);
 
+  const [searchTerm, setSearchTerm] = useState("");
+  let timeoutId;
+
+  function handleInputChange(event) {
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      // Perform search or filtering action here using the `value` variable
+      console.log(`Searching for ${value}...`);
+      console.log(searchTerm);
+    }, 500); // Set the timeout to half a second (500 milliseconds)
+  }
+
   useEffect(() => {
     axiosInstance
       .get(`book/all/`, {
@@ -108,8 +123,17 @@ function Books() {
             </div>
 
             {books.length !== 0 && (
-              <>
-                <div className={classes.Books__BookItem}>
+              <div className={classes.BooksContainer}>
+                <div className={classes.BooksContainer__search}>
+                  <input
+                    className={classes.BooksContainer__search__input}
+                    type="text"
+                    placeholder="لطفا نام کتاب، نویسنده یا توضیحات آن را وارد کنید..."
+                    value={searchTerm}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className={classes.BooksContainer__BookItem}>
                   {console.log(books.total_price)}
                   {books.map((element) => (
                     <BookItem
@@ -129,7 +153,7 @@ function Books() {
                     />
                   ))}
                 </div>
-              </>
+              </div>
             )}
           </>
         )}
