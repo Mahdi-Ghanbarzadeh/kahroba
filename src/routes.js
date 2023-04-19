@@ -10,6 +10,8 @@ import NotFound from "./pages/NotFound";
 import Books from "./pages/Books";
 import { Book } from "./pages/Book/Book.tsx";
 import { PlusAccount } from "./pages/UserPanel/PlusAccount/PlusAccount.tsx";
+import { FailPaymant } from "./pages/paymant/FailPaymant.tsx";
+import { SuccessPayment } from "./pages/paymant/SuccessPayment.tsx";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -29,6 +31,16 @@ export const routes = [
   {
     path: "/forgot-password",
     element: <ForgotPassword />,
+  },
+
+  {
+    path: "/success-payment",
+    element: <SuccessPayment />,
+  },
+
+  {
+    path: "/fail-payment",
+    element: <FailPaymant />,
   },
 
   // { path: "/user-panel", element: <UserPanel /> },
