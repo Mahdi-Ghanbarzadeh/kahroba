@@ -1,0 +1,93 @@
+.container {
+  margin: 3rem;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+  background-color: #fff;
+  border-radius: 15px;
+  border: 1px solid #e0e0e6;
+
+  &__loader {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__description {
+    margin-top: 17rem;
+    color: #c68642;
+    font-size: 2.4rem;
+    font-weight: 600;
+  }
+
+  &__headerContainer {
+    grid-column: 1 / span 2;
+    border-bottom: 1px solid #e0e0e2;
+
+    &__header {
+      position: relative;
+      display: inline-block;
+      padding-right: 1rem;
+      padding-left: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 0.3rem solid #8d5524;
+    }
+
+    &__text {
+      color: #8d5524;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+  }
+
+  &__infoCards {
+    margin-top: 3rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 4rem;
+    border: 1px solid #e0e0e2;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    @media (max-width: 65.375em) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    &__infoCard {
+      border-left: 1px solid #e0e0e2;
+      border-bottom: 1px solid #e0e0e2;
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+
+      &__titleValue {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &__title {
+          color: #81858b;
+          font-size: 1.6rem;
+        }
+        &__value {
+          color: #424750;
+          font-size: 1.6rem;
+        }
+      }
+
+      &__edit {
+        display: flex;
+        align-items: center;
+
+        &__icon {
+          font-size: 2.5rem;
+          color: #424750;
+          flex-shrink: 0;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

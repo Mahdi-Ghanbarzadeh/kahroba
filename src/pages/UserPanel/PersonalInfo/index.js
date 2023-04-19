@@ -3,7 +3,7 @@ import InfoCard from "./InfoCard";
 import BeatLoader from "react-spinners/BeatLoader";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../axios";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 const override = `
   display: inline-block;
@@ -16,13 +16,17 @@ function PersonalInfo() {
   console.log(information);
 
   useEffect(() => {
-    axiosInstance.get(`auth/info/`).then((res) => {
-      if (res.status >= 200 && res.status < 300) {
-        console.log(res);
-        setLoading(false);
-        setInformation(res.data);
-      }
-    });
+    try {
+      axiosInstance.get(`auth/info/`).then((res) => {
+        if (res.status >= 200 && res.status < 300) {
+          console.log(res);
+          setLoading(false);
+          setInformation(res.data);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (

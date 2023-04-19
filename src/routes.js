@@ -9,6 +9,7 @@ import RequestedBooks from "./pages/UserPanel/RequestedBooks";
 import NotFound from "./pages/NotFound";
 import Books from "./pages/Books";
 import { Book } from "./pages/Book/Book.tsx";
+import { PlusAccount } from "./pages/UserPanel/PlusAccount/PlusAccount.tsx";
 
 export const routes = [
   { path: "/", element: <Homepage /> },
@@ -40,6 +41,7 @@ export const routes = [
       { path: "/user-panel/donated-books", element: <DonatedBooks /> },
       { path: "/user-panel/requested-books", element: <RequestedBooks /> },
       { path: "/user-panel/personal-information", element: <PersonalInfo /> },
+      { path: "/user-panel/plus-account", element: <PlusAccount /> },
     ],
   },
 
