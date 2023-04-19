@@ -56,7 +56,7 @@ export const Book = () => {
               <BookFeature index={2} name="مترجم" value="هنگامه خدابنده" />
               <BookFeature index={3} name="درخواست ها" value="12" />
             </div>
-            <button className="bg-yellow-500 hover:bg-yellow-600 transition-colors font-bold px-4 py-1.5 text-[1.2rem] rounded-md text-white">
+            <button className="bg-yellow-500 bg-opacity-90 hover:bg-opacity-100 transition-colors font-bold px-4 py-1.5 text-[1.2rem] rounded-md text-white">
               درخواست کتاب
             </button>
           </div>
