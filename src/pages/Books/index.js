@@ -31,19 +31,31 @@ function Books() {
   // }, [user.auth, user.type, navigate]);
 
   const [searchTerm, setSearchTerm] = useState("");
-  let timeoutId;
 
-  function handleInputChange(event) {
-    const value = event.target.value;
-    setSearchTerm(value);
-
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      // Perform search or filtering action here using the `value` variable
-      console.log(`Searching for ${value}...`);
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
       console.log(searchTerm);
-    }, 500); // Set the timeout to half a second (500 milliseconds)
-  }
+      // Send Axios request here
+      axiosInstance
+        .get(`book/all/`, {
+          params: {
+            search: searchTerm,
+          },
+        })
+        .then((res) => {
+          if (res.status >= 200 && res.status < 300) {
+            setBooks(res.data);
+            setLoading(false);
+          }
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
+        });
+    }, 1000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
 
   useEffect(() => {
     axiosInstance
@@ -99,9 +111,6 @@ function Books() {
 
       <section className={classes.Books}>
         <div className={classes.Books__loader}>
-          {!loading && books.length === 0 && (
-            <span className={classes.Books__description}>کتابی یافت نشد!</span>
-          )}
           <DotLoader
             className={classes.Books__description}
             color="#8d5524"
@@ -111,51 +120,56 @@ function Books() {
           />
         </div>
 
-        {!loading && books.length !== 0 && (
-          <>
-            <div className={classes.Books__headerContainer} ref={ref}>
-              <div className={classes.Books__header}>
-                <span className={classes.Books__header__text}>کتاب‌ها</span>
-                <span className={classes.Books__header__number}>
-                  {digitsEnToFa(books.length)}
-                </span>
-              </div>
+        {!loading && (
+          <div className={classes.Books__headerContainer} ref={ref}>
+            <div className={classes.Books__header}>
+              <span className={classes.Books__header__text}>کتاب‌ها</span>
+              <span className={classes.Books__header__number}>
+                {digitsEnToFa(books.length)}
+              </span>
             </div>
+          </div>
+        )}
 
-            {books.length !== 0 && (
-              <div className={classes.BooksContainer}>
-                <div className={classes.BooksContainer__search}>
-                  <input
-                    className={classes.BooksContainer__search__input}
-                    type="text"
-                    placeholder="لطفا نام کتاب، نویسنده یا توضیحات آن را وارد کنید..."
-                    value={searchTerm}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className={classes.BooksContainer__BookItem}>
-                  {console.log(books.total_price)}
-                  {books.map((element) => (
-                    <BookItem
-                      id={element.book_id}
-                      name={element.name}
-                      author={element.author}
-                      translator={element.translator}
-                      print_year={element.publish_year}
-                      isbn={element.shabak}
-                      description={element.description}
-                      picture={element.picture}
-                      donator={element.donator}
-                      is_donated={element.is_donated}
-                      is_received={element.is_received}
-                      is_requested_before={element.is_requested_before}
-                      setBooks={setBooks}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
-          </>
+        {!loading && (
+          <div className={classes.BooksContainer__search}>
+            <input
+              className={classes.BooksContainer__search__input}
+              type="text"
+              placeholder="لطفا نام کتاب، نویسنده یا توضیحات آن را وارد کنید..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        )}
+
+        {!loading && books.length === 0 && (
+          <span className={classes.Books__description}>کتابی یافت نشد!</span>
+        )}
+
+        {books.length !== 0 && (
+          <div className={classes.BooksContainer}>
+            <div className={classes.BooksContainer__BookItem}>
+              {console.log(books.total_price)}
+              {books.map((element) => (
+                <BookItem
+                  id={element.book_id}
+                  name={element.name}
+                  author={element.author}
+                  translator={element.translator}
+                  print_year={element.publish_year}
+                  isbn={element.shabak}
+                  description={element.description}
+                  picture={element.picture}
+                  donator={element.donator}
+                  is_donated={element.is_donated}
+                  is_received={element.is_received}
+                  is_requested_before={element.is_requested_before}
+                  setBooks={setBooks}
+                />
+              ))}
+            </div>
+          </div>
         )}
       </section>
     </>
