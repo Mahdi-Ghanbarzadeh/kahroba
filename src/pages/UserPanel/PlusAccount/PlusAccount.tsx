@@ -51,6 +51,16 @@ export const PlusAccount = () => {
             <div
               key={i}
               className="w-full text-2xl font-medium border-2 p-5 rounded-lg border-gray-100 flex flex-col gap-4"
+              onClick={() => {
+                axiosInstance
+                  .post(`payment/request/`, { duration: item.day })
+                  .then((res) => {
+                    if (res.status >= 200 && res.status < 300) {
+                      setLoading(false);
+                      setInformation(res.data);
+                    }
+                  });
+              }}
             >
               <div className="font-bold">{item.day} روز</div>
               <div className="text-gray-500">{item.price} تومان</div>
