@@ -20,7 +20,7 @@ export const routes = [
     element: <Books />,
   },
   {
-    path: "/book",
+    path: "/book/:id",
     element: <Book />,
   },
   {
