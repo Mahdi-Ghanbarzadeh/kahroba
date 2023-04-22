@@ -40,6 +40,7 @@ function Books() {
         .get(`book/all/`, {
           params: {
             search: searchTerm,
+            is_donated: false,
           },
         })
         .then((res) => {
@@ -57,25 +58,25 @@ function Books() {
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 
-  useEffect(() => {
-    axiosInstance
-      .get(`book/all/`, {
-        params: {
-          is_donated: false,
-        },
-      })
-      .then((res) => {
-        if (res.status >= 200 && res.status < 300) {
-          setBooks(res.data);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        // notifyError();
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axiosInstance
+  //     .get(`book/all/`, {
+  //       params: {
+  //         is_donated: false,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       if (res.status >= 200 && res.status < 300) {
+  //         setBooks(res.data);
+  //         setLoading(false);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false);
+  //       // notifyError();
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const { ref, inView, entry } = useInView({
     threshold: 1,
