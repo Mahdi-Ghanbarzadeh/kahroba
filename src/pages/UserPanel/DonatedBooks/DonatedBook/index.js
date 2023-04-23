@@ -71,6 +71,7 @@ function DonatedBook({
               publish_year: print_year,
               shabak: isbn,
               is_donated: true,
+              number_of_request,
               setBooks,
             },
             ...prev.filter((book) => book.book_id !== id),

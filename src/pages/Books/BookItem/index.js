@@ -5,6 +5,7 @@ import { useContext } from "react";
 import UserContext from "../../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 function BookItem({
   id,
@@ -133,74 +134,84 @@ function BookItem({
       }
     }
   }
+
   return (
-    <div className={classes.BookItem}>
-      <img src={picture} className={classes.BookItem__pic} alt={name} />
-      <div className={classes.BookItem__description}>
-        <div className={classes.BookItem__description__container}>
-          <span className={classes.BookItem__description__name}>
-            <span className={classes.BookItem__description__key}>
-              عنوان کتاب:{" "}
-            </span>
-            {name}
-          </span>
-        </div>
-
-        <div className={classes.BookItem__description__container}>
-          <span className={classes.BookItem__description__name}>
-            <span className={classes.BookItem__description__key}>
-              نویسنده:{" "}
-            </span>
-            {author}
-          </span>
-        </div>
-
-        {translator !== "" && (
+    <Link to={`/book/${id}`}>
+      <div className={classes.BookItem}>
+        <img src={picture} className={classes.BookItem__pic} alt={name} />
+        <div className={classes.BookItem__description}>
           <div className={classes.BookItem__description__container}>
             <span className={classes.BookItem__description__name}>
               <span className={classes.BookItem__description__key}>
-                مترجم:{" "}
+                عنوان کتاب:{" "}
               </span>
-              {translator}
+              {name}
             </span>
           </div>
-        )}
 
-        <div className={classes.BookItem__description__container}>
-          <span className={classes.BookItem__description__name}>
-            <span className={classes.BookItem__description__key}>
-              سال چاپ:{" "}
+          <div className={classes.BookItem__description__container}>
+            <span className={classes.BookItem__description__name}>
+              <span className={classes.BookItem__description__key}>
+                نویسنده:{" "}
+              </span>
+              {author}
             </span>
-            {digitsEnToFa(print_year)}
-          </span>
-        </div>
+          </div>
 
-        <div className={classes.BookItem__description__container}>
-          <span className={classes.BookItem__description__name}>
-            <span className={classes.BookItem__description__key}>شابک: </span>
-            {digitsEnToFa(isbn)}
-          </span>
-        </div>
+          {translator !== "" && (
+            <div className={classes.BookItem__description__container}>
+              <span className={classes.BookItem__description__name}>
+                <span className={classes.BookItem__description__key}>
+                  مترجم:{" "}
+                </span>
+                {translator}
+              </span>
+            </div>
+          )}
 
-        <div className={classes.BookItem__description__container}>
-          <span className={classes.BookItem__description__name}>
-            <span className={classes.BookItem__description__longKey}>
-              توضیحات:{" "}
+          <div className={classes.BookItem__description__container}>
+            <span className={classes.BookItem__description__name}>
+              <span className={classes.BookItem__description__key}>
+                سال چاپ:{" "}
+              </span>
+              {digitsEnToFa(print_year)}
             </span>
-            {description}
-          </span>
+          </div>
+
+          <div className={classes.BookItem__description__container}>
+            <span className={classes.BookItem__description__name}>
+              <span className={classes.BookItem__description__key}>شابک: </span>
+              {digitsEnToFa(isbn)}
+            </span>
+          </div>
+
+          <div className={classes.BookItem__description__container}>
+            <span className={classes.BookItem__description__name}>
+              <span className={classes.BookItem__description__longKey}>
+                توضیحات:{" "}
+              </span>
+              {description}
+            </span>
+          </div>
+        </div>
+        <div className={classes.BookItem__btns}>
+          <button
+            className={classes.effect}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              handleBook();
+            }}
+          >
+            {donator === user.userId
+              ? "حذف کتاب"
+              : is_requested_before
+              ? "حذف درخواست"
+              : "ثبت درخواست"}
+          </button>
         </div>
       </div>
-      <div className={classes.BookItem__btns}>
-        <button className={classes.effect} onClick={handleBook}>
-          {donator === user.userId
-            ? "حذف کتاب"
-            : is_requested_before
-            ? "حذف درخواست"
-            : "ثبت درخواست"}
-        </button>
-      </div>
-    </div>
+    </Link>
   );
 }
 

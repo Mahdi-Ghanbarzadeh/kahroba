@@ -5,17 +5,22 @@ import { useContext, useState, useRef, useEffect } from "react";
 import UserContext from "../../../store/UserContext";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useInView } from "react-intersection-observer";
+import {
+  faSeedling,
+  faShare,
+  faFileArrowUp,
+  faFileArrowDown,
+  faUser,
+  faArrowRightFromBracket,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSeedling } from "@fortawesome/free-solid-svg-icons";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
-import { faFileArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+
 const tokenIcon = <FontAwesomeIcon icon={faSeedling} />;
 const donateIcon = <FontAwesomeIcon icon={faShare} />;
 const donatedIcon = <FontAwesomeIcon icon={faFileArrowUp} />;
 const requestedIcon = <FontAwesomeIcon icon={faFileArrowDown} />;
+const userPlus = <FontAwesomeIcon icon={faStar} fontSize={16} />;
 const informationIcon = <FontAwesomeIcon icon={faUser} />;
 const logoutIcon = <FontAwesomeIcon icon={faArrowRightFromBracket} />;
 
@@ -71,6 +76,10 @@ function Sidebar() {
 
           <CustomLink to="/user-panel/requested-books" icon={requestedIcon}>
             کتاب‌های درخواستی
+          </CustomLink>
+
+          <CustomLink to="/user-panel/plus-account" icon={userPlus}>
+            ارتقای حساب کاربری
           </CustomLink>
 
           <CustomLink
