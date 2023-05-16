@@ -34,11 +34,11 @@ export default function AccountBox(props) {
   let { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user.auth) {
-      navigate("/");
-    }
-  }, [user.auth, navigate]);
+  // useEffect(() => {
+  //   if (user.auth) {
+  //     navigate("/");
+  //   }
+  // }, [user.auth, navigate]);
 
   let backdropVariants = getBackdropVariants();
   const [isExpanded, setExpanded] = useState(false);

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, BrowserRouter as Router } from "react-router-dom";
 import { Marginer } from "../../../components/Marginer.jsx";
 import classes from "./ForgotPassword.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useHistory } from "react-router-dom";
 import UserContext from "../../../store/UserContext";
 import axiosInstance from "../../../axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -35,14 +35,15 @@ export default function ForgotPassword() {
   };
 
   const navigate = useNavigate();
+  // const history = useHistory();
 
   let { user } = useContext(UserContext);
 
-  useEffect(() => {
-    if (user.auth) {
-      navigate("/");
-    }
-  }, [user.auth, navigate]);
+  // useEffect(() => {
+  //   if (user.auth) {
+  //     navigate("/");
+  //   }
+  // }, [user.auth, navigate]);
 
   const initialFormData = Object.freeze({
     email: "",
@@ -80,6 +81,7 @@ export default function ForgotPassword() {
   };
 
   return (
+    // <Router>
     <div className={classes.appContainer}>
       <ToastContainer
         position="top-right"
@@ -167,12 +169,13 @@ export default function ForgotPassword() {
             className={
               classes.appContainer__boxContainer__innerContainer__boldLink
             }
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/account-box")}
           >
             ورود | ثبت‌نام
           </span>
         </div>
       </div>
     </div>
+    // </Router>
   );
 }

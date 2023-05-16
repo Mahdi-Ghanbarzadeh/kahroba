@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
-import UserContext from "../../../store/UserContext";
+import React from "react";
 import classes from "./HeroSection.module.scss";
 import Button from "../../../components/Button";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 function HeroSection() {
-  const { user } = useContext(UserContext);
   return (
     <section className={classes.HeroSection}>
       <div className={classes.HeroSection__content}>

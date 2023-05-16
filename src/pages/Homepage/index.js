@@ -7,7 +7,7 @@ function Homepage() {
     <>
       <MainNavigation />
       <HeroSection />
-      {/* <InfoSection /> */}
+      <InfoSection />
     </>
   );
 }

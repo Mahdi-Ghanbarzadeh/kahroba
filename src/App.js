@@ -2,7 +2,7 @@ import "./App.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import { routes } from "./routes";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import UserContext from "./store/UserContext";
 import { useContext, useEffect } from "react";
 
@@ -14,6 +14,7 @@ function App() {
   }, []);
 
   return (
+    // <Router>
     <Routes>
       {routes.map((route, i) => (
         <Route key={i} path={route.path} element={route.element}>
@@ -22,6 +23,7 @@ function App() {
         </Route>
       ))}
     </Routes>
+    // </Router>
   );
 }
 
