@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import axiosInstance from "../../axios";
 import { Book } from "./Book";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 jest.mock("react", () => ({
@@ -26,6 +26,7 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: jest.fn(),
   useLocation: jest.fn(),
+  Link: ({ children }) => <div>{children}</div>,
 }));
 
 jest.mock("../../axios", () => ({
@@ -33,8 +34,8 @@ jest.mock("../../axios", () => ({
   post: jest.fn(),
 }));
 jest.mock("swiper/react", () => ({
-  Swiper: ({ children }) => <div>{children}</div>,
-  SwiperSlide: ({ children }) => <div>{children}</div>,
+  Swiper: ({ children, ...props }) => <div {...props}>{children}</div>,
+  SwiperSlide: ({ children, ...props }) => <div {...props}>{children}</div>,
 }));
 
 jest.mock("swiper", () => ({
@@ -62,6 +63,24 @@ const book = {
   donator: 3,
   is_requested_before: false,
 };
+const similar_books = [
+  {
+    book_id: 2,
+    name: "Test Name 2",
+    description: "Test Description 2",
+    picture: "url.png",
+    translator: "Test Translator 2",
+    shabak: "2",
+    publish_year: "1379",
+    is_donated: false,
+    is_received: false,
+    author: "Test Author 2",
+    number_of_request: 0,
+    keywords: "['test_keyword']",
+    donator: 3,
+    is_requested_before: true,
+  },
+];
 
 describe("Book component", () => {
   beforeEach(() => {
@@ -113,7 +132,7 @@ describe("Book component", () => {
     useState.mockImplementationOnce(() => [
       {
         book,
-        similar_books: [],
+        similar_books,
       },
       mockedUseState,
     ]);
@@ -206,5 +225,23 @@ describe("Book component", () => {
     render(<Book />);
 
     fireEvent.click(screen.getByText("ثبت درخواست"));
+  });
+
+  test("is suggested books loaded", () => {
+    useState.mockImplementationOnce(() => [false, mockedUseState]);
+    useState.mockImplementationOnce(() => [
+      {
+        book: {
+          ...book,
+          donator: "test-id",
+        },
+        similar_books,
+      },
+      mockedUseState,
+    ]);
+
+    render(<Book />);
+
+    expect(screen.getByTestId("simbooks")).toBeInTheDocument();
   });
 });

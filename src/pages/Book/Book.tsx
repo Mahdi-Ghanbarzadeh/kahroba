@@ -205,6 +205,7 @@ export const Book: FC = () => {
           <h1 className="font-bold text-3xl mt-10">کتاب‌های مشابه</h1>
           {simBooks && simBooks.length > 0 && (
             <Swiper
+              data-testid="simbooks"
               className={clsx("my-10 w-full")}
               slidesPerView="auto"
               modules={[Navigation, Mousewheel, Autoplay]}
