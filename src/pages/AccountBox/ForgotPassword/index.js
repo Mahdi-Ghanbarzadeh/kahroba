@@ -60,24 +60,19 @@ export default function ForgotPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     axiosInstance
       .post(`auth/reset-password/`, {
         email: formData.email,
       })
       .then((res) => {
-        console.log(res);
-        console.log(res.status);
         if (res.status >= 200 && res.status < 300) {
           notifySuccess();
           updateFormData(initialFormData);
         }
       })
       .catch((e) => {
-        console.log("test");
         notifyError();
       });
-    console.log(formData);
   };
 
   return (

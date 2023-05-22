@@ -1,5 +1,4 @@
-import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useState } from "react";
 import axiosInstance from "../axios";
 
 const UserContext = createContext({
