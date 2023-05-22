@@ -49,7 +49,7 @@ export function Signup(props) {
 
   const form = useRef();
 
-  const { switchToSignin } = useContext(AccountContext);
+  // const { switchToSignin } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -109,16 +109,6 @@ export function Signup(props) {
           updateFormData(initialFormData);
 
           setTimeout(() => {
-            // login(
-            //   res.data.name,
-            //   res.data.user_id,
-            //   res.data.phone_number,
-            //   res.data.email,
-            //   res.data.rooyesh
-            // );
-            // localStorage.setItem("token", res.data.token);
-            // axiosInstance.defaults.headers["Authorization"] =
-            // "Token " + localStorage.getItem("token");
             navigate("");
           }, 3000);
         }
@@ -178,6 +168,7 @@ export function Signup(props) {
             onChange={handleChange}
           />
           <i
+            data-testid="password-toggle"
             className={classes.boxContainer__formContainer__passWrapper__icon}
             onClick={togglePasswordVisibility}
           >
@@ -212,7 +203,7 @@ export function Signup(props) {
         <a
           className={classes.boxContainer__boldLink}
           href="#"
-          onClick={switchToSignin}
+          // onClick={switchToSignin}
         >
           وارد شوید
         </a>

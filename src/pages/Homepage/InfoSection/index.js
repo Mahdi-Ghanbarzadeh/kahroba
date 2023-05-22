@@ -33,7 +33,7 @@ function InfoSection() {
             {/* /<h3></h3> */}
             <img
               src="./images/illustration12.png"
-              alt=""
+              alt="illustration12"
               className={classes.InfoSection__row__image}
             />
             <div>

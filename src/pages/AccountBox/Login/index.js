@@ -43,7 +43,7 @@ export function Login(props) {
     });
   };
 
-  const { switchToSignup } = useContext(AccountContext);
+  // const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -51,7 +51,7 @@ export function Login(props) {
 
   const { login } = useContext(UserContext);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const initialFormData = Object.freeze({
     email: "",
     password: "",
@@ -133,6 +133,7 @@ export function Login(props) {
             name="password"
           />
           <i
+            data-testid="password-toggle"
             className={classes.boxContainer__formContainer__passWrapper__icon}
             onClick={togglePasswordVisibility}
           >
@@ -166,7 +167,7 @@ export function Login(props) {
         <a
           className={classes.boxContainer__boldLink}
           href="#"
-          onClick={switchToSignup}
+          // onClick={switchToSignup}
         >
           ثبت‌نام کنید
         </a>

@@ -28,4 +28,21 @@ describe("InfoSection component", () => {
     expect(images[1]).toHaveAttribute("src", "./images/illustration12.png");
     expect(images[2]).toHaveAttribute("src", "./images/illustration9.png");
   });
+
+  test("renders the correct images", () => {
+    render(<InfoSection />);
+
+    const images = screen.getAllByRole("img");
+    expect(images).toHaveLength(3);
+    expect(images[0]).toHaveAttribute("src", "./images/illustration11.png");
+    expect(images[1]).toHaveAttribute("src", "./images/illustration12.png");
+    expect(images[2]).toHaveAttribute("src", "./images/illustration9.png");
+  });
+
+  test("check the value of alt attribute to be correct", () => {
+    render(<InfoSection />);
+    const image = screen.getByAltText("illustration12");
+    expect(image).toBeInTheDocument();
+    expect(image.src).toContain("illustration12.png");
+  });
 });
