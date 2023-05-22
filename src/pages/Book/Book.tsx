@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import MainNavigation from "../../components/MainNavigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import clsx from "clsx";
@@ -6,48 +6,18 @@ import { Autoplay, Mousewheel, Navigation } from "swiper";
 import axiosInstance from "../../axios";
 import { ToastContainer, toast } from "react-toastify";
 import UserContext from "../../store/UserContext";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { DotLoader } from "react-spinners";
+// @ts-ignore
+import { BookFeature } from "./BookFeature.tsx";
+// @ts-ignore
+import { BookThumbnail } from "./BookThumbnail.tsx";
 import classes from "../Books/Books.module.scss";
 
-const BookFeature = ({ name, value, index }) => (
-  <>
-    <span
-      className={clsx(
-        index % 2 ? "bg-gray-50" : "",
-        "text-gray-500 pl-5 pr-2 py-2"
-      )}
-    >
-      {name}
-    </span>
-    <span
-      className={clsx(
-        index % 2 ? "bg-gray-50" : "",
-        "font-bold text-gray-500 pl-5 pr-2 py-2 text-[1.3rem]"
-      )}
-    >
-      {value}
-    </span>
-  </>
-);
-
-const BookThumbnail = ({ id, name, src }) => (
-  <Link to={`../book/${id}`}>
-    <div className="flex flex-col gap-5 border-2 py-10 hover:bg-gray-50 border-gray-100 transition-colors rounded-md w-60 p-5 cursor-pointer">
-      <div className="w-40 h-56 overflow-hidden">
-        <img src={src} alt="" />
-      </div>
-      <p className="font-bold text-gray-800">{name}</p>
-      <button className="font-bold text-gray-50 mt-2 bg-slate-700 py-2 rounded-md">
-        مشاهده
-      </button>
-    </div>
-  </Link>
-);
-
-export const Book = (props) => {
+export const Book: FC = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+
   const [information, setInformation] = useState<any>({});
   const [isRequested, setIsRequested] = useState(false);
   const [reqCount, setReqCount] = useState(0);
@@ -172,6 +142,7 @@ export const Book = (props) => {
             <span className={classes.Books__description}>کتابی یافت نشد!</span>
           )}
           <DotLoader
+            data-testid="loader"
             className={classes.Books__description}
             color="#8d5524"
             loading={loading}
@@ -187,7 +158,7 @@ export const Book = (props) => {
             </div>
             <div className="flex-1 p-10">
               <h1 className="font-bold text-[2rem] text-gray-800">
-                {book.title}
+                {book.name}
               </h1>
               <div className="grid grid-cols-2 my-10 max-w-fit">
                 <BookFeature index={1} name="نویسنده" value={book.author} />
@@ -234,6 +205,7 @@ export const Book = (props) => {
           <h1 className="font-bold text-3xl mt-10">کتاب‌های مشابه</h1>
           {simBooks && simBooks.length > 0 && (
             <Swiper
+              data-testid="simbooks"
               className={clsx("my-10 w-full")}
               slidesPerView="auto"
               modules={[Navigation, Mousewheel, Autoplay]}
