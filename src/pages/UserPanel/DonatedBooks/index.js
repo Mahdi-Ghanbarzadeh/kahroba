@@ -13,6 +13,7 @@ const override = `
 `;
 
 function DonatedBooks() {
+  console.log("-render-");
   const notifyError = () => {
     toast.error("خطایی هنگام دریافت کتاب‌های اهدایی رخ داد", {
       position: "top-right",
@@ -121,6 +122,7 @@ function DonatedBooks() {
           </span>
         )}
         <BeatLoader
+          data-testid="loader"
           className={classes.container__description}
           color="#8d5524"
           loading={loading}

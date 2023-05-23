@@ -41,7 +41,7 @@ function DonateBook() {
     register,
     handleSubmit,
     reset,
-    formState: { isValid },
+    // formState: { isValid },
   } = useForm({ mode: "onChange" });
 
   const onSubmit = (values) => {
@@ -202,7 +202,7 @@ function DonateBook() {
             type="text"
             placeholder=" "
             {...register("book_name", {
-              required: true,
+              required: false,
             })}
           />
           <span className={classes.input__label}>عنوان کتاب</span>
@@ -213,7 +213,7 @@ function DonateBook() {
             type="text"
             placeholder=" "
             {...register("author_name", {
-              required: true,
+              required: false,
             })}
           />
           <span className={classes.input__label}>نویسنده</span>
@@ -246,7 +246,7 @@ function DonateBook() {
             type="text"
             placeholder=" "
             {...register("isbn", {
-              required: true,
+              required: false,
             })}
           />
           <span className={classes.input__label}>شابک</span>
@@ -258,7 +258,7 @@ function DonateBook() {
             type="text"
             placeholder=" "
             {...register("description", {
-              required: true,
+              required: false,
             })}
           />
           <span className={classes.input__label}>خلاصه کتاب</span>
@@ -278,17 +278,20 @@ function DonateBook() {
             type="file"
             accept="image/png, image/jpeg"
             {...register("book_url", {
-              required: true,
+              required: false,
             })}
           />
           <span className={classes.input__picture}>عکس</span>
         </label>
 
-        <button
+        {/* <button
           onClick={handleSubmit(onSubmit)}
           className={isValid ? classes.btn : classes["btn--disable"]}
           disabled={!isValid}
         >
+          اهدا
+        </button> */}
+        <button onClick={handleSubmit(onSubmit)} className={classes.btn}>
           اهدا
         </button>
       </form>
