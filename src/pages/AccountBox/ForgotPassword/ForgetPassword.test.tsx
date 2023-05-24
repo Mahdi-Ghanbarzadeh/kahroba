@@ -101,4 +101,49 @@ describe("ForgotPassword component", () => {
     fireEvent.click(spanElement);
     expect(mockedUsedNavigate).toHaveBeenCalledWith("/account-box");
   });
+
+  test("submits the forgot password form and updates form data on success", async () => {
+    render(
+      <MemoryRouter>
+        <ForgotPassword />
+      </MemoryRouter>
+    );
+
+    const emailInput = screen.getByPlaceholderText("ایمیل");
+    const submitButton = screen.getByRole("button", { name: "بازیابی" });
+
+    fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
+    fireEvent.click(submitButton);
+
+    const successToast = await screen.findByText(
+      "لطفا ایمیل خود را بررسی کنید"
+    );
+
+    expect(successToast).toBeInTheDocument();
+    expect(emailInput.value).toBe("");
+  });
+
+  test("submit button is disabled when email input is empty", () => {
+    render(
+      <MemoryRouter>
+        <ForgotPassword />
+      </MemoryRouter>
+    );
+
+    const submitButton = screen.getByText("بازیابی");
+    expect(submitButton).toBeDisabled();
+  });
+
+  test("submit button is enabled when email input is filled", () => {
+    render(
+      <MemoryRouter>
+        <ForgotPassword />
+      </MemoryRouter>
+    );
+    const emailInput = screen.getByPlaceholderText("ایمیل");
+    fireEvent.change(emailInput, { target: { value: "mahdi@gmail.com" } });
+    const submitButton = screen.getByText("بازیابی");
+
+    expect(submitButton).not.toBeDisabled();
+  });
 });

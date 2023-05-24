@@ -120,6 +120,7 @@ function RequestedBooks() {
           </span>
         )}
         <BeatLoader
+          data-testid="loader"
           className={classes.container__description}
           color="#8d5524"
           loading={loading}

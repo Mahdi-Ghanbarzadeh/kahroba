@@ -1,16 +1,12 @@
-import classes from "./Books.module.scss";
 import MainNavigation from "../../components/MainNavigation";
-import { digitsEnToFa, addCommas } from "@persian-tools/persian-tools";
-import Button from "../../components/Button";
-import BookItem from "./BookItem";
-
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 import { useInView } from "react-intersection-observer";
-import { useContext, useEffect, useState } from "react";
-import axiosInstance from "../../axios";
+import { ToastContainer } from "react-toastify";
+import { useEffect, useState } from "react";
 import { DotLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom";
-import UserContext from "../../store/UserContext";
-import { ToastContainer, toast } from "react-toastify";
+import classes from "./Books.module.scss";
+import axiosInstance from "../../axios";
+import BookItem from "./BookItem";
 
 const override = `
   display: inline-block;
@@ -20,22 +16,12 @@ const override = `
 function Books() {
   let [loading, setLoading] = useState(true);
   let [books, setBooks] = useState([]);
-  console.log(books);
-  const navigate = useNavigate();
-
-  let { user } = useContext(UserContext);
-  // useEffect(() => {
-  //   if (user.type === "seller") {
-  //     navigate("/");
-  //   }
-  // }, [user.auth, user.type, navigate]);
-
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
+    console.log("useEffect");
     const delayDebounceFn = setTimeout(() => {
-      console.log(searchTerm);
-      // Send Axios request here
+      console.log("first");
       axiosInstance
         .get(`book/all/`, {
           params: {
@@ -58,40 +44,9 @@ function Books() {
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 
-  // useEffect(() => {
-  //   axiosInstance
-  //     .get(`book/all/`, {
-  //       params: {
-  //         is_donated: false,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.status >= 200 && res.status < 300) {
-  //         setBooks(res.data);
-  //         setLoading(false);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setLoading(false);
-  //       // notifyError();
-  //       console.log(err);
-  //     });
-  // }, []);
-
-  const { ref, inView, entry } = useInView({
+  const { ref } = useInView({
     threshold: 1,
   });
-
-  // function confirmShoppingHandler() {
-  //   axiosInstance.get(`/accounts/checkout/`).then((res) => {
-  //     if (res.status === 200) {
-  //       // setList(res.data);
-  //       // setLoading(false);
-  //       navigate("/user-panel/orders", { replace: true });
-  //     }
-  //   });
-  //   console.log("/accounts/checkout/");
-  // }
 
   return (
     <>
@@ -113,6 +68,7 @@ function Books() {
       <section className={classes.Books}>
         <div className={classes.Books__loader}>
           <DotLoader
+            data-testid="loader"
             className={classes.Books__description}
             color="#8d5524"
             loading={loading}
@@ -135,6 +91,7 @@ function Books() {
         {!loading && (
           <div className={classes.BooksContainer__search}>
             <input
+              data-testid="search-inp"
               className={classes.BooksContainer__search__input}
               type="text"
               placeholder="لطفا نام کتاب، نویسنده یا توضیحات آن را وارد کنید..."
@@ -154,6 +111,7 @@ function Books() {
               {console.log(books.total_price)}
               {books.map((element) => (
                 <BookItem
+                  key={element.book_id}
                   id={element.book_id}
                   name={element.name}
                   author={element.author}
