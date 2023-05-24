@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function DonateBook() {
+  console.log("test renderdo");
   const notifySuccess = () => {
     toast.success("کتاب با موفقیت افزوده شد", {
       position: "top-right",
@@ -45,6 +46,7 @@ function DonateBook() {
   } = useForm({ mode: "onChange" });
 
   const onSubmit = (values) => {
+    console.log("run onSubmit");
     console.log(values);
     console.log(values.book_name);
 
@@ -110,6 +112,7 @@ function DonateBook() {
         }
       )
       .then((res) => {
+        console.log("test resstatus" + res.status);
         if (res.status >= 200 && res.status < 300) {
           console.log(res);
           notifySuccess();

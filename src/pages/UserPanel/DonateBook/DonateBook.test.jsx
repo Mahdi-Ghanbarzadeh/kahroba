@@ -15,33 +15,25 @@ import { rest } from "msw";
 import { toast } from "react-toastify";
 import userEvent from "@testing-library/user-event";
 
-// jest.mock("../../../axios"); // Mock axiosInstance
-
-const server = setupServer(
-  rest.post("/book/register/", (req, res, ctx) => {
-    console.log("runnnn");
-    console.log(req.body);
-    const { name } = req.body;
-
-    console.log(name);
-    if (name === "nabard") {
-      console.log("run if 1");
-      return res(ctx.status(200));
-    } else {
-      console.log("run if 2");
-      return res(ctx.status(200));
-    }
-  })
-);
-
-beforeAll(() => server.listen());
-// afterEach(() => );
-afterAll(() => server.close());
+jest.mock("../../../axios", () => ({
+  get: jest.fn(),
+  post: jest.fn(),
+  defaults: {
+    headers: {
+      "Content-Type": "",
+    },
+  },
+}));
 
 describe("DonateBook", () => {
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks();
-    server.resetHandlers();
+
+    axiosInstance.post.mockImplementation(() =>
+      Promise.resolve({
+        status: 200,
+      })
+    );
   });
 
   test("renders the DonateBook page correctly", () => {
@@ -218,47 +210,100 @@ describe("DonateBook", () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  // test("should display successful message when submits the form with valid data", async () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <DonateBook />
-  //     </MemoryRouter>
-  //   );
+  test("should display successful message when submits the form with valid data", async () => {
+    render(
+      <MemoryRouter>
+        <DonateBook />
+      </MemoryRouter>
+    );
 
-  //   const submitButton = screen.getByText("اهدا");
+    const submitButton = screen.getByText("اهدا");
 
-  //   const bookNameInput = screen.getByLabelText("عنوان کتاب");
-  //   const authorNameInput = screen.getByLabelText("نویسنده");
-  //   const translatorNameInput = screen.getByLabelText("مترجم");
-  //   const printYearInput = screen.getByLabelText("سال چاپ");
-  //   const isbnInput = screen.getByLabelText("شابک");
-  //   const descriptionInput = screen.getByLabelText("خلاصه کتاب");
-  //   const photoInput = screen.getByLabelText("عکس");
+    const bookNameInput = screen.getByLabelText("عنوان کتاب");
+    const authorNameInput = screen.getByLabelText("نویسنده");
+    const translatorNameInput = screen.getByLabelText("مترجم");
+    const printYearInput = screen.getByLabelText("سال چاپ");
+    const isbnInput = screen.getByLabelText("شابک");
+    const descriptionInput = screen.getByLabelText("خلاصه کتاب");
+    const photoInput = screen.getByLabelText("عکس");
 
-  //   const bookName = "nabard";
-  //   const authorName = "هیتلر";
-  //   const translatorName = "فرشته اکبرپور";
-  //   const printYear = "1391";
-  //   const isbn = "8894894894894";
-  //   const description = "کتاب قشنگی هست";
-  //   const photoFile = new File(["photo content"], "photo.jpg", {
-  //     type: "image/jpeg",
-  //   });
+    const bookName = "nabard";
+    const authorName = "هیتلر";
+    const translatorName = "فرشته اکبرپور";
+    const printYear = "1391";
+    const isbn = "8894894894894";
+    const description = "کتاب قشنگی هست";
+    const photoFile = new File(["photo content"], "photo.jpg", {
+      type: "image/jpeg",
+    });
 
-  //   fireEvent.change(bookNameInput, { target: { value: bookName } });
-  //   fireEvent.change(authorNameInput, { target: { value: authorName } });
-  //   fireEvent.change(translatorNameInput, {
-  //     target: { value: translatorName },
-  //   });
-  //   fireEvent.change(printYearInput, { target: { value: printYear } });
-  //   fireEvent.change(isbnInput, { target: { value: isbn } });
-  //   fireEvent.change(descriptionInput, { target: { value: description } });
-  //   fireEvent.change(photoInput, { target: { files: [photoFile] } });
+    fireEvent.change(bookNameInput, { target: { value: bookName } });
+    fireEvent.change(authorNameInput, { target: { value: authorName } });
+    fireEvent.change(translatorNameInput, {
+      target: { value: translatorName },
+    });
+    fireEvent.change(printYearInput, { target: { value: printYear } });
+    fireEvent.change(isbnInput, { target: { value: isbn } });
+    fireEvent.change(descriptionInput, { target: { value: description } });
+    fireEvent.change(photoInput, { target: { files: [photoFile] } });
 
-  //   fireEvent.click(submitButton);
-  //   const successToast = await screen.findByText("کتاب با موفقیت افزوده شد");
-  //   // const successToast = await screen.findByText("خطایی رخ داد");
-  //   screen.debug();
-  //   expect(successToast).toBeInTheDocument();
-  // });
+    fireEvent.click(submitButton);
+
+    axiosInstance.defaults.headers["Content-Type"] = "multipart/form-data";
+    axiosInstance.post.mockResolvedValue({
+      status: 200,
+    });
+
+    const successToast = await screen.findByText("کتاب با موفقیت افزوده شد");
+    // const successToast = await screen.findByText("خطایی رخ داد");
+    expect(successToast).toBeInTheDocument();
+  });
+
+  test("should display error message when submits the form with network errors", async () => {
+    render(
+      <MemoryRouter>
+        <DonateBook />
+      </MemoryRouter>
+    );
+
+    const submitButton = screen.getByText("اهدا");
+
+    const bookNameInput = screen.getByLabelText("عنوان کتاب");
+    const authorNameInput = screen.getByLabelText("نویسنده");
+    const translatorNameInput = screen.getByLabelText("مترجم");
+    const printYearInput = screen.getByLabelText("سال چاپ");
+    const isbnInput = screen.getByLabelText("شابک");
+    const descriptionInput = screen.getByLabelText("خلاصه کتاب");
+    const photoInput = screen.getByLabelText("عکس");
+
+    const bookName = "nabard";
+    const authorName = "هیتلر";
+    const translatorName = "فرشته اکبرپور";
+    const printYear = "1391";
+    const isbn = "8894894894894";
+    const description = "کتاب قشنگی هست";
+    const photoFile = new File(["photo content"], "photo.jpg", {
+      type: "image/jpeg",
+    });
+
+    fireEvent.change(bookNameInput, { target: { value: bookName } });
+    fireEvent.change(authorNameInput, { target: { value: authorName } });
+    fireEvent.change(translatorNameInput, {
+      target: { value: translatorName },
+    });
+    fireEvent.change(printYearInput, { target: { value: printYear } });
+    fireEvent.change(isbnInput, { target: { value: isbn } });
+    fireEvent.change(descriptionInput, { target: { value: description } });
+    fireEvent.change(photoInput, { target: { files: [photoFile] } });
+
+    fireEvent.click(submitButton);
+
+    axiosInstance.defaults.headers["Content-Type"] = "multipart/form-data";
+    axiosInstance.post.mockRejectedValue({
+      status: 400,
+    });
+
+    const successToast = await screen.findByText("خطایی رخ داد");
+    expect(successToast).toBeInTheDocument();
+  });
 });
