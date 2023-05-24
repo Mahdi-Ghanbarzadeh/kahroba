@@ -22,9 +22,8 @@ function BookItem({
   is_requested_before,
   setBooks,
 }) {
-  console.log("--test--");
   const { user, logout } = useContext(UserContext);
-  console.log(user.userId);
+  console.log(user.userId, donator, "cls");
 
   function handleBook() {
     const notifySuccess = (message) => {
