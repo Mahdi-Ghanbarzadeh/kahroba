@@ -134,6 +134,7 @@ describe("DonatedBooks component", () => {
 
   test("renders loading spinner when loading is true", () => {
     render(<DonatedBooks />);
+    screen.debug();
     expect(screen.getByTestId("loader")).toBeInTheDocument();
   });
 

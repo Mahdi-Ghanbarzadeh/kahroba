@@ -51,20 +51,6 @@ const book = {
 describe("DonatedBook component", () => {
   const mockSetBooks = jest.fn();
 
-  // const book = {
-  //   id: 1,
-  //   book_name: "Book Name",
-  //   book_url: "book_image.jpg",
-  //   author_name: "Author Name",
-  //   translator_name: "Translator Name",
-  //   print_year: "2021",
-  //   isbn: "1234567890",
-  //   is_donated: false,
-  //   is_received: false,
-  //   setBooks: mockSetBooks,
-  //   number_of_request: 2,
-  // };
-
   beforeEach(() => {
     jest.clearAllMocks();
     useContext.mockReturnValue({
@@ -96,7 +82,7 @@ describe("DonatedBook component", () => {
     // useLocation.mockReturnValue({ pathname: "/books/1" });
   });
 
-  test("renders book details", () => {
+  test("renders book details when component displayed", () => {
     render(
       <DonatedBook
         id={book.book_id}
@@ -118,7 +104,7 @@ describe("DonatedBook component", () => {
     expect(screen.getByText(book.translator)).toBeInTheDocument();
   });
 
-  test("handles donate button click", async () => {
+  test("handles donate button click and see ", async () => {
     render(
       <DonatedBook
         id={book.book_id}
@@ -133,7 +119,6 @@ describe("DonatedBook component", () => {
         number_of_request={book.number_of_request}
         setBooks={mockSetBooks}
       />
-      // { wrapper: DonatedBooks }
     );
 
     fireEvent.click(screen.getByText("اهدا"));
@@ -141,25 +126,5 @@ describe("DonatedBook component", () => {
     axiosInstance.post.mockResolvedValue({
       status: 200,
     });
-
-    // continuo *****
-
-    // expect(mockSetBooks).toHaveBeenCalledTimes(1);
-    // const successToast = await screen.findByText("کتاب با موفقیت اهدا شد");
-    // expect(successToast).toBeInTheDocument();
-    // expect(mockSetBooks).toHaveBeenCalledWith([
-    //   {
-    //     book_id: 1,
-    //     name: "Book Name",
-    //     picture: "book_image.jpg",
-    //     author: "Author Name",
-    //     translator: "Translator Name",
-    //     publish_year: "2021",
-    //     shabak: "1234567890",
-    //     is_donated: true,
-    //     number_of_request: 2,
-    //     setBooks: mockSetBooks,
-    //   },
-    // ]);
   });
 });

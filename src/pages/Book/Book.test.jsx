@@ -143,7 +143,7 @@ describe("Book component", () => {
     expect(screen.getByText("Test Author")).toBeInTheDocument();
   });
 
-  test("handles book deletion by donator", async () => {
+  test("handles book deletion by donator and display successful message", async () => {
     const successMessage = "کتاب با موفقیت حذف شد";
     toast.success.mockImplementation(() => {
       render(
@@ -171,7 +171,7 @@ describe("Book component", () => {
     fireEvent.click(screen.getByText("حذف کتاب"));
   });
 
-  test("handles request deletion by non-donator", async () => {
+  test("handles request deletion by non-donator and display delete message", async () => {
     const successMessage = "درخواست کتاب با موفقیت حذف شد";
     axiosInstance.post.mockResolvedValueOnce({ status: 200 });
     toast.success.mockImplementation(() => {
@@ -199,7 +199,7 @@ describe("Book component", () => {
     fireEvent.click(screen.getByText("حذف درخواست"));
   });
 
-  test("handles request registration by non-donator", async () => {
+  test("handles request registration by non-donator and display added message", async () => {
     const successMessage = "درخواست کتاب با موفقیت افزوده شد";
     axiosInstance.post.mockResolvedValueOnce({ status: 200 });
     toast.success.mockImplementation(() => {
@@ -227,7 +227,7 @@ describe("Book component", () => {
     fireEvent.click(screen.getByText("ثبت درخواست"));
   });
 
-  test("is suggested books loaded", () => {
+  test("loaded suggested books when component rendered", () => {
     useState.mockImplementationOnce(() => [false, mockedUseState]);
     useState.mockImplementationOnce(() => [
       {

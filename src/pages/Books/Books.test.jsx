@@ -124,7 +124,7 @@ describe("Book component", () => {
     expect(screen.getByText("Test Author 2")).toBeInTheDocument();
   });
 
-  test("check searching function", async () => {
+  test("enter a value in search input and display result", async () => {
     jest.useFakeTimers();
     axiosInstance.get.mockResolvedValue({
       status: 200,
@@ -148,7 +148,7 @@ describe("Book component", () => {
     expect(screen.getByText("second in name")).toBeInTheDocument();
   });
 
-  test("search error", async () => {
+  test("enter a value in search input and display error", async () => {
     jest.useFakeTimers();
     axiosInstance.get.mockRejectedValue({
       status: 400,

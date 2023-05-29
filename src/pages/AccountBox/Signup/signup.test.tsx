@@ -47,7 +47,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe("Signup", () => {
-  test("renders the signup form", () => {
+  test("renders the signup form correctly", () => {
     render(
       <MemoryRouter>
         <Signup />
@@ -67,7 +67,7 @@ describe("Signup", () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  test("fills in the form and check the value of inputs", () => {
+  test("fills in the form and check the value of inputs to be correct", () => {
     render(
       <MemoryRouter>
         <Signup />
@@ -178,9 +178,6 @@ describe("Signup", () => {
       target: { value: invalidPhoneNumber },
     });
     fireEvent.click(submitButton);
-
-    // const errorMessage = screen.getByText("لطفا شماره تلفن صحیح وارد کنید");
-    // expect(errorMessage).toBeInTheDocument();
 
     const errorMessage = await screen.findByText(
       "لطفا شماره تلفن صحیح وارد کنید"

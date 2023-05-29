@@ -9,17 +9,6 @@ import * as UserContext from "../../../store/UserContext";
 
 jest.useFakeTimers();
 
-// // Mock the useContext hook
-// jest.mock("react", () => ({
-//   ...jest.requireActual("react"),
-//   useContext: jest.fn(),
-// }));
-
-// // Mock the context value
-// const mockContextValue = {
-//   login: jest.fn(),
-// };
-
 const server = setupServer(
   rest.post("/auth/login/", (req, res, ctx) => {
     const { username, password } = req.body;
@@ -47,7 +36,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe("Login Component", () => {
-  test("renders Login form", () => {
+  test("renders Login form correctly", () => {
     render(
       <MemoryRouter>
         <Login />
@@ -62,7 +51,7 @@ describe("Login Component", () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  test("submits the login form with valid credentials", async () => {
+  test("submits the login form with valid credentials and display welcome message", async () => {
     render(
       <MemoryRouter>
         <Login />
@@ -100,7 +89,7 @@ describe("Login Component", () => {
     expect(successToast).toBeInTheDocument();
   });
 
-  test("renders Login form with password visibility toggle", () => {
+  test("renders Login form with password visibility toggle and show password", () => {
     render(
       <MemoryRouter>
         <Login />
@@ -162,23 +151,6 @@ describe("Login Component", () => {
 
     const successToast = await screen.findByText("خوش آمدید");
     expect(successToast).toBeInTheDocument();
-
-    // const loginMock = jest.fn();
-    // // Mock the useContext hook to return the login function
-    // jest.spyOn(React, "useContext").mockReturnValueOnce({ login: loginMock });
-
-    // // fireEvent.click(submitButton);
-    // const login = jest.fn();
-    // useContext.mockReturnValue(mockContextValue);
-
-    // jest.advanceTimersByTime(3000);
-    // expect(login).toHaveBeenCalled();
-
-    // const login = jest.fn();
-    // expect(login).toHaveBeenCalled();
-
-    // expect(localStorage.getItem("token")).toBe("1000");
-    // expect(axiosInstance.defaults.headers["Authorization"]).toBe("Token 1000");
   });
 
   test("submit button is disabled when inputs are empty", () => {
@@ -208,88 +180,4 @@ describe("Login Component", () => {
     const submitButton = screen.getByRole("button", { name: "ورود" });
     expect(submitButton).not.toBeDisabled();
   });
-
-  // test("submits the login form and calls login function on success", async () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <Login />
-  //     </MemoryRouter>
-  //   );
-
-  //   const emailInput = screen.getByPlaceholderText("ایمیل");
-  //   const passwordInput = screen.getByPlaceholderText("رمز عبور");
-  //   const submitButton = screen.getByRole("button", { name: "ورود" });
-
-  //   // fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-  //   // fireEvent.change(passwordInput, { target: { value: "password123" } });
-  //   fireEvent.change(emailInput, { target: { value: "mahdi@gmail.com" } });
-  //   fireEvent.change(passwordInput, { target: { value: "12345678" } });
-
-  //   // Mock the useContext hook to return the login function
-  //   // jest.spyOn(React, "useContext").mockReturnValueOnce({ login: loginMock });
-  //   const loginMock = jest.fn();
-  //   jest.spyOn(React, "useContext").mockReturnValueOnce({ login: loginMock });
-
-  //   // const contextValues = { login: jest.fn() };
-  //   // jest.spyOn(UserContext, "login").mockImplementation(() => contextValues);
-
-  //   fireEvent.click(submitButton);
-
-  //   const successToast = await screen.findByText("خوش آمدید");
-  //   expect(successToast).toBeInTheDocument();
-
-  //   expect(loginMock).toHaveBeenCalled();
-
-  //   // await waitFor(() => {
-  //   //   expect(loginMock).toHaveBeenCalled();
-  //   // });
-  // });
-
-  // mock the localStorage
-  // test("submits the login form and performs login actions", async () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <Login />
-  //     </MemoryRouter>
-  //   );
-
-  //   const emailInput = screen.getByPlaceholderText("ایمیل");
-  //   const passwordInput = screen.getByPlaceholderText("رمز عبور");
-  //   const submitButton = screen.getByRole("button", { name: "ورود" });
-
-  //   fireEvent.change(emailInput, { target: { value: "mahdi@gmail.com" } });
-  //   fireEvent.change(passwordInput, { target: { value: "12345678" } });
-  //   fireEvent.click(submitButton);
-
-  //   const successToast = await screen.findByText("خوش آمدید");
-  //   expect(successToast).toBeInTheDocument();
-
-  //   // await waitFor(() => {
-  //   //   expect(screen.getByText("خوش آمدید", { exact: false })).toBeInTheDocument();
-  //   // });
-
-  //   jest.advanceTimersByTime(3000);
-
-  //   expect(localStorage.getItem("token")).toBe("1000");
-  //   expect(axiosInstance.defaults.headers["Authorization"]).toBe("Token 1000");
-  // });
-
-  // test("navigates to forgot password page when the link is clicked", () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <Login />
-  //     </MemoryRouter>
-  //   );
-
-  //   const forgotPasswordLink = screen.getByRole("link", {
-  //     name: "رمز عبور خود را فراموش کرده‌اید؟",
-  //   });
-
-  //   fireEvent.click(forgotPasswordLink);
-  //   screen.debug();
-
-  //   expect(
-  //     screen.getByText("لطفا برای بازیابی، ایمیل خود را وارد کنید.")
-  //   ).toBeInTheDocument();
-  // });
 });

@@ -29,7 +29,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe("ForgotPassword component", () => {
-  test("renders the component", () => {
+  test("renders the component correctly", () => {
     render(
       <MemoryRouter>
         <ForgotPassword />
