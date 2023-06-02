@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import axiosInstance from "../../axios";
 import { Book } from "./Book";
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 jest.mock("react", () => ({

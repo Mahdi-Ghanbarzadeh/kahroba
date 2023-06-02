@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# کهربا
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+گسترش فرهنگ کتاب‌خوانی و اهدا کتاب در کنار کمک به حفظ محیط‌زیست، اساسی‌ترین آرمان‌های کهربا هستند. این سامانه به افراد کمک می‌کند تا بتوانند کتاب‌هایی را که دیگر لازم ندارند به دیگران اهدا کنند و از طرفی، با اهدا کتاب این فرصت را به دست می‌آورند که برای کتاب‌های موردعلاقه‌شان درخواست بدهند و شانس دریافت رایگان آن کتاب را داشته باشند.
+این سامانه گروه‌های مختلف جامعه را مورد هدف قرار داده و به یاری آنان می‌شتابد، از افرادی که به دنبال راه مناسبی برای گردش کتاب‌های رهاشده و بلااستفاده در خانه‌شان دارند تا آنان که ممکن است استطاعت مالی خرید نسخه چاپی کتاب را نداشته باشند و حتی کسانی که صرفاً برای مدتی کوتاه (مثلاً تا پایان سال تحصیلی جاری) کتاب خاصی را لازم دارند، همگی می‌توانند از امکانات سامانه کهربا بهره ببرند و به مقصود خود دست یابند.
+همچنین، از آنجا که در دنیای مدرن امروز اکثر کارها به کمک اینترنت و با کمترین زحمت فیزیکی انجام می‌شوند، اهدا کتاب هم نمی‌تواند از این قاعده مستثنی باشد و روند سنتی خود را ادامه دهد. استفاده از کهربا در مقایسه با روش معمول مراجعه به کتابخانه‌های عمومی مزایایی را به همراه دارد؛ سرعت و سادگی کار، اهدا و درخواست کتاب تنها با چند کلیک و بدون نیاز به رفت‌وآمد فیزیکی، علاوه بر اینکه کهربا به گونه‌ای برنامه‌ریزی شده است که فرد با اهدا کتاب (مخصوصا کتب پرطرفدار) شانس بیشتری برای دریافت رایگان کتب مورد علاقه‌اش در این سامانه پیدا می‌کند و این در نوع خود، کتاب‌خوانان را ترغیب می‌کند تا با یک‌دیگر تعامل بیشتری برقرار نمایند.
 
-## Available Scripts
+## فهرست مطالب
 
-In the project directory, you can run:
+- [لینک سایت](#لینک-سایت)
+- [تست](#تست)
+- [تکنولوژی‌ها و ابزارها](#تکنولوژی‌ها-و-ابزارها)
+- [برنامه‌های آینده](#برنامه‌های-آینده)
 
-### `npm start`
+## لینک سایت
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+پروژه کهربا از طریق لینک زیر در دسترس است:
+www.kahroba.netlify.app
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## تست
 
-### `npm test`
+کامپوننت‌های اصلی این سامانه تست شده‌اند و تست‌های نوشته شده درصد کاوریج بالایی دارد. همچنین جاب‌های build و deploy در فایل CI/CD نوشته شده‌اند و با هر بار پوش کردن، سایت تست می‌شود و همه‌ی تست‌ها پس می‌شوند.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## تکنولوژی‌ها و ابزارها
 
-### `npm run build`
+فیگما : طراحی وایرفریم، صفحات و انتخاب رنگ‌ها و فونت‌های برنامه و چیدمان دکمه‌ها و سایر اجزای برنامه با استفاده از فیگما، انجام شد.
+ری‌اکت : برای پیاده‌سازی امکانات سمت کاربر کهربا، از کتابخانه پرطرفدار ری‌اکت استفاده شد.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## برنامه‌های آینده
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+در نظر داریم برنامه‌هایی برای جمع‌آوری بازخوردهای کاربران و بهبود الگوریتم پیشنهاددهی داشته باشیم. با توجه به بازخوردها، سعی می‌کنیم نیازها و ترجیحات کاربران را بهبود داده و تجربه‌ی آن‌ها را بهبود بخشیم.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+با ارتقای پلتفرم به صورت مداوم، قصد داریم تا برنامه‌های ارتباطی بین کاربران را تقویت کرده و فرصت‌های بیشتری برای مبادله‌ی دانش و تجربیات فراهم کنیم. از جمله برنامه‌های آینده، راه‌اندازی گروه‌های مطالعه و برگزاری رویدادهای مرتبط با علاقه‌مندی‌های کتابی خواهد بود.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+با تکیه بر نظرات کاربران و دستیابی به هدف اصلی سایت، یعنی ترویج فرهنگ کتابخوانی و به اشتراک گذاری کتاب‌ها، به امید این هستیم که سایت اهدای کتاب محبوبیت بیشتری در بین کاربران کسب کند و به یک جامعه‌ی پویایی برای علاقه‌مندان به کتاب تبدیل شود.
