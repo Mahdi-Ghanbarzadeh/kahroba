@@ -80,7 +80,6 @@ export default function AccountBox(props) {
   return (
     <AccountContext.Provider value={contextValue}>
       <div className={classes.appContainer}>
-        {active}
         <div className={classes.appContainer__boxContainer}>
           <div className={classes.appContainer__boxContainer__topContainer}>
             <motion.div

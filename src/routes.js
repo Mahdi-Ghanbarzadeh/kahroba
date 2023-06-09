@@ -42,8 +42,6 @@ export const routes = [
     path: "/fail-payment",
     element: <FailPaymant />,
   },
-
-  // { path: "/user-panel", element: <UserPanel /> },
   {
     path: "/user-panel",
     element: <UserPanel />,

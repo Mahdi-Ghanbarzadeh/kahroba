@@ -43,7 +43,7 @@ export function Login(props) {
     });
   };
 
-  // const { switchToSignup } = useContext(AccountContext);
+  const { switchToSignup } = useContext(AccountContext);
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -51,7 +51,7 @@ export function Login(props) {
 
   const { login } = useContext(UserContext);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const initialFormData = Object.freeze({
     email: "",
     password: "",
@@ -89,6 +89,7 @@ export function Login(props) {
             localStorage.setItem("token", res.data.token);
             axiosInstance.defaults.headers["Authorization"] =
               "Token " + localStorage.getItem("token");
+            navigate("/");
           }, 3000);
         }
       })
@@ -167,7 +168,7 @@ export function Login(props) {
         <a
           className={classes.boxContainer__boldLink}
           href="#"
-          // onClick={switchToSignup}
+          onClick={switchToSignup}
         >
           ثبت‌نام کنید
         </a>

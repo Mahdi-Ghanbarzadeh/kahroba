@@ -22,6 +22,7 @@ export function UserContextProvider({ children }) {
   console.log(user);
 
   const login = (username, userId, phoneNumber, email, rooyesh) => {
+    console.log(username, userId, phoneNumber, email, rooyesh);
     setUser({
       username: username,
       userId: userId,
@@ -55,45 +56,47 @@ export function UserContextProvider({ children }) {
     localStorage.setItem("userInformation", JSON.stringify(user));
   };
 
+  // const checkLogin = () => {
+  //   if (
+  //     localStorage.getItem("token") !== null &&
+  //     localStorage.getItem("token") !== undefined &&
+  //     localStorage.getItem("token") !== "undefined"
+  //   ) {
+  //     console.log("test");
+  //     axiosInstance
+  //       .get(`auth/info/`)
+  //       .then((res) => {
+  //         console.log(res);
+  //         if (res.status >= 200 && res.status < 300) {
+  //           login(
+  //             res.data.name,
+  //             res.data.user_id,
+  //             res.data.phone_number,
+  //             res.data.email,
+  //             res.data.rooyesh
+  //           );
+  //         }
+  //       })
+  //       .catch((e) => {
+  //         console.log(e);
+  //       });
+  //   }
+  // };
+
   const checkLogin = () => {
     if (
       localStorage.getItem("token") !== null &&
       localStorage.getItem("token") !== undefined &&
       localStorage.getItem("token") !== "undefined"
     ) {
-      console.log("test");
-      axiosInstance
-        .get(`auth/info/`)
-        .then((res) => {
-          console.log(res);
-          if (res.status >= 200 && res.status < 300) {
-            login(
-              res.data.name,
-              res.data.user_id,
-              res.data.phone_number,
-              res.data.email,
-              res.data.rooyesh
-            );
-          }
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-      // axiosInstance
-      //   .post(`accounts/api/token/verify/`, {
-      //     token: localStorage.getItem("access_token"),
-      //   })
-      //   .then((res) => {
-      //     console.log("res" + res);
-      //     if (res.status === 200) {
-      //       console.log(res);
-      //       console.log(localStorage.getItem("userInformation"));
-      //       setUser(JSON.parse(localStorage.getItem("userInformation")));
-      //     } else {
-      //       console.log("logout checklogin");
-      //       logout();
-      //     }
-      //   });
+      const local = JSON.parse(localStorage.getItem("userInformation"));
+      login(
+        local.username,
+        local.userId,
+        local.phoneNumber,
+        local.email,
+        local.rooyesh
+      );
     }
   };
 
